@@ -1,0 +1,19 @@
+div.mermaid {
+    text-align: center;
+}
+
+html * {
+  font-size: 16px;
+  line-height: 1.525;
+  color: #2020131;
+  font-family: 'Open Sans', sans-serif;
+}
+
+ul {
+    list-style-type:none;
+}
+
+li {
+        padding-left: 1.5em;
+        text-indent:-1.5em;
+    }
