@@ -1,0 +1,18 @@
+{
+   "title": "Typewriter Alley",
+   "scene-type": "Core",
+   "lead-ins": [
+      "<a href='scene_dame.html'>A Dame Comes into Your Office</a>",
+      "<a href='scene_order.html'>The Order of Argent Light</a>",
+      "<a href='scene_alegria.html'>The Alegria</a>"
+   ],
+   "lead-outs": [
+      "<a href='scene_order.html'>The Order of Argent Light</a>",
+      "<a href='scene_franz.html'>Franz's Spiel</a>",
+      "<a href='scene_alegria.html'>The Alegria</a>"
+   ],
+   "text": [
+      "Dashing screenwriter Marshall Daly could double as a matinee idol — if he was willing to get out of bed as early as a movie actor has to. Author of pseudonymous paperback thrillers and a rising screenwriter at Capitol Pictures, he staggers into the studio writer’s complex, nicknamed Typewriter Alley, in the early afternoon every weekday.",
+      "Typewriter Alley resembles a one-story motel, with a line of offices connected by a long wooden porch under a terracotta-tiled awning. Although security guards protect the studio’s soundstages and outdoor standing sets from overeager fans and stalkers, no one cares about the boring office areas. Dex can slip in unnoticed without resistance — or simply stride confidently in as if he has business here."
+   ]
+}
