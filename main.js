@@ -24,9 +24,13 @@ $(document).ready(function(){
       sceneInfo.insertAdjacentHTML( 'beforeend',"<hr>");
       // print out list of text in the scene
       results.text.forEach(function(element) {
-        if (element.clue !== undefined) {
+        // check if you find a list of clues or not. If so, print them out
+        if (element.clue_list !== undefined) {
           // print out each individual clue and format with checkbox
           // check if checkbox should be checked or not 
+          element.clue_list.forEach(function(clue)) {
+
+          }
           if (element.clue.known == true) {
 
           } else {
