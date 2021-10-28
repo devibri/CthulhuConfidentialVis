@@ -16,12 +16,13 @@ text:
   - "\"Will you see this to the end, Dex?\""
   - "A player holding the Problem card \"Lonely\" can choose to skip this Challenge by trading it for the Problem card \"Smitten with Margaret.\""
   - "Margaret wants to learn what happened to Helen without exposing her father Roscoe to further humiliation. So the story she tells omits some details. Her opening explanation goes like this:"
-  - clue: 
-    - Six weeks ago, her sister Helen went missing.
-    - known: true
-  - clue: 
-    - Four weeks ago, Helen turned up, wandering the downtown streets late at night, clad only in a blood-stained, dirty camisole and slip. The cops picked her up and, recognizing a missing heiress from an influential family, discreetly took her home.
-    - known: false
+  - clue_list:
+    - clue: 
+      - Six weeks ago, her sister Helen went missing.
+      - known: true
+    - clue: 
+      - Four weeks ago, Helen turned up, wandering the downtown streets late at night, clad only in a blood-stained, dirty camisole and slip. The cops picked her up and, recognizing a missing heiress from an influential family, discreetly took her home.
+      - known: false
   - <li><input type='checkbox'> On arrival, Helen did not seem to recognize her sister. She has been all but mute and nearly catatonic ever since, despite receiving the best care money can buy.</li>
   - <li><input type='checkbox'> The police performed a half-hearted investigation but turned up nothing useful. Margaret didn’t push them. If Helen had gotten mixed up in something scandalous, she’d rather have that information under her control, not the cops’.</li>
   - <li><input type='checkbox'> Margaret admits she might have waited too long to take action. She was hoping her sister would show signs of recovery. Now, as she increasingly fears that she'll never get the story from Helen, she realizes she really does want to get the sons of bitches who did this.</li>

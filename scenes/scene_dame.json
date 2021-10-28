@@ -18,18 +18,22 @@
       "A player holding the Problem card \"Lonely\" can choose to skip this Challenge by trading it for the Problem card \"Smitten with Margaret.\"",
       "Margaret wants to learn what happened to Helen without exposing her father Roscoe to further humiliation. So the story she tells omits some details. Her opening explanation goes like this:",
       {
-         "clue": [
-            "Six weeks ago, her sister Helen went missing.",
+         "clue_list": [
             {
-               "known": true
-            }
-         ]
-      },
-      {
-         "clue": [
-            "Four weeks ago, Helen turned up, wandering the downtown streets late at night, clad only in a blood-stained, dirty camisole and slip. The cops picked her up and, recognizing a missing heiress from an influential family, discreetly took her home.",
+               "clue": [
+                  "Six weeks ago, her sister Helen went missing.",
+                  {
+                     "known": true
+                  }
+               ]
+            },
             {
-               "known": false
+               "clue": [
+                  "Four weeks ago, Helen turned up, wandering the downtown streets late at night, clad only in a blood-stained, dirty camisole and slip. The cops picked her up and, recognizing a missing heiress from an influential family, discreetly took her home.",
+                  {
+                     "known": false
+                  }
+               ]
             }
          ]
       },
