@@ -17,7 +17,7 @@ li {
         text-indent:-1.5em;
     }
 
-    .column {
+.column {
   float: left;
   width: 50%;
 }
@@ -33,7 +33,3 @@ li {
 	height:130% !important; 
 	
 }
-
-.cssClass > rect{
-        font-size: 24px !important;
-    }

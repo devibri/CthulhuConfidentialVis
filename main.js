@@ -1,5 +1,5 @@
 /* I put your JSON into an external file, loaded from github */
-var url = "https://www.devi-a.com/CthulhuConfidentialVis/people.json";
+var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/scene_dame.json";
 
 /* this tells the page to wait until jQuery has loaded, so you can use the Ajax call */
 
@@ -13,10 +13,11 @@ $(document).ready(function(){
     success:function(results){
   /* the results is your json, you can reference the elements directly by using it here, without creating any additional variables */
   
-      var cartItemsList = document.getElementById("sceneInfo");
-
-      results.basket.productList.forEach(function(element) {
-      cartItemsList.insertAdjacentHTML( 'beforeend',"<li>" + element.product.name + " : " + element.price+ " </li>");
+      var sceneInfo = document.getElementById("sceneInfo");
+      sceneInfo.insertAdjacentHTML( 'beforeend',"<h1>" + results.title + " </h1>");
+      sceneInfo.insertAdjacentHTML( 'beforeend',"<p><em>Scene Type: " + results.scene_type + " </em></p>");
+      results.text.forEach(function(element) {
+        sceneInfo.insertAdjacentHTML( 'beforeend',"<p>" + element + " </p>");
       }); // end of forEach
     }  // end of success fn
    }) // end of Ajax call
