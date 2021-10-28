@@ -1,7 +1,7 @@
 ---
 title: A Dame Comes Into Your Office
-scene-type: Opener
-lead-outs: 
+scene_type: Opener
+lead_outs: 
   - <a href='scene_girl.html'>The Girl with Death in her Eyes</a>
   - <a href='scene_typewriter.html'>Typewriter Alley</a>
   - <a href='scene_order.html'>The Order of Argent Light</a>
