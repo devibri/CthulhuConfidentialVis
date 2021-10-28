@@ -14,10 +14,15 @@ $(document).ready(function(){
   /* the results is your json, you can reference the elements directly by using it here, without creating any additional variables */
   
       var sceneInfo = document.getElementById("sceneInfo");
-      sceneInfo.insertAdjacentHTML( 'beforeend',"<h1>" + results.title + " </h1>");
-      sceneInfo.insertAdjacentHTML( 'beforeend',"<p><em>Scene Type: " + results.scene_type + " </em></p>");
+      sceneInfo.insertAdjacentHTML( 'beforeend', "<h1>" + results.title + " </h1>");
+      sceneInfo.insertAdjacentHTML( 'beforeend', "<p><em>Scene Type: " + results.scene_type + " </em></p>");
+      sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Outs: ");
+      results.lead_outs.forEach(function(element) {
+        sceneInfo.insertAdjacentHTML( 'beforeend', element + " | ");
+      });
+      sceneInfo.insertAdjacentHTML( 'beforeend',"<hr>");
       results.text.forEach(function(element) {
-        sceneInfo.insertAdjacentHTML( 'beforeend',"<p>" + element + " </p>");
+        sceneInfo.insertAdjacentHTML( 'beforeend', "<p>" + element + " </p>");
       }); // end of forEach
     }  // end of success fn
    }) // end of Ajax call
