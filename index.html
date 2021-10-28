@@ -1,3 +1,75 @@
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.js"></script>
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="row">
+  <div class="column">
+    <div class="mermaid">
+       graph TD
+         Scene_Dame["&lt;a href&#61;&#39;scenes/scene_dame.html&#39; target&#61;&#39;myiframe&#39; &gt;A Dame Comes Into Your Office&lt;/a&gt;"] 
+         Scene_Typewriter["&lt;a href&#61;&#39;scenes/scene_typewriter.html&#39; target&#61;&#39;myiframe&#39; &gt;Typewriter Alley&lt;/a&gt;"]
+         Scene_Order["&lt;a href&#61;&#39;scenes/scene_order.html&#39; target&#61;&#39;myiframe&#39; &gt;The Order of Argent Light&lt;/a&gt;"]
+         Scene_Girl["&lt;a href&#61;&#39;scenes/scene_girl.html&#39; target&#61;&#39;myiframe&#39; &gt;The Girl with Death in her Eyes&lt;/a&gt;"]
+         Scene_Franz[Franz's Spiel]
+         Scene_Guest[The Guest House]
+         Scene_Into[Into the Hypno-Dimensional]
+         Scene_Revisiting[Revisiting Margaret]
+         Scene_Alegria[The Alegria]
+         Scene_Bumping[Bumping into Roscoe]
+         Scene_Money[The Money Man]
+         Scene_Squeeze[The Squeeze Artist]
+         Scene_Top[Top of the System]
+         Scene_New[New Blood]
+         Scene_Mickey[Mickey Knows a Guy]
+         Scene_Bugsy[Bugsy's Weird Rock]
+         Scene_Missing[The Missing Ex-Cop]
+         Scene_Hole[The Hole]
+         Scene_Dame --> Scene_Typewriter
+         Scene_Dame --> Scene_Order
+         Scene_Dame --> Scene_Girl
+         Scene_Franz --> Scene_Guest
+         Scene_Typewriter --> Scene_Franz
+         Scene_Typewriter --> Scene_Order
+         Scene_Typewriter --> Scene_Alegria
+         Scene_Order --> Scene_Typewriter
+         Scene_Order --> Scene_Revisiting
+         Scene_Order --> Scene_Girl
+         Scene_Girl --> Scene_Bumping
+         Scene_Guest --> Scene_Money
+         Scene_Guest --> Scene_Into
+         Scene_Into --> Scene_Revisiting
+         Scene_Revisiting --> Scene_Bumping
+         Scene_Revisiting --> Scene_Alegria
+         Scene_Alegria --> Scene_Squeeze
+         Scene_Alegria --> Scene_Money
+         Scene_Alegria --> Scene_Top
+         Scene_Bumping --> Scene_Alegria
+         Scene_Money --> Scene_Squeeze
+         Scene_Money --> Scene_Guest
+         Scene_Squeeze --> Scene_Top
+         Scene_Squeeze --> Scene_Mickey
+         Scene_Top --> Scene_Missing
+         Scene_Top --> Scene_New
+         Scene_New --> Scene_Mickey
+         Scene_New --> Scene_Bugsy
+         Scene_Bugsy --> Scene_Mickey
+         Scene_Bugsy --> Scene_Hole
+         Scene_Missing --> Scene_Hole
+         Scene_Mickey --> Scene_Hole
+     </div>
+  </div>
+  <div class="column">
+    <div id="sceneInfo">
+  </div>
+  </div>
+</body>
+
+
 <!-- <head>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.js"></script>
@@ -14,7 +86,7 @@
     <div class="resizable"><iframe name="myiframe" src="scenes/scene_dame.html" frameborder="0" scrolling="yes" style="overflow: hidden; height: 100%; width: 60%; "height="100%" width="60%" align="right"></iframe></div>
   </div>
   </div>
-</body> -->
+</body> --><!-- 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="main.js"></script>
@@ -24,4 +96,4 @@
     <h2>Cart Items</h2>
     <ul id="cartItemsList">
     </ul>
-</div>
+</div> -->
