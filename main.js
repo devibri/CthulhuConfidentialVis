@@ -24,17 +24,13 @@ $(document).ready(function(){
       sceneInfo.insertAdjacentHTML( 'beforeend',"<hr>");
       // print out list of text in the scene
       results.text.forEach(function(element) {
-        // check if you find a list of clues or not. If so, print them out
-        if (element.clue_list !== undefined) {
+        if (element.clue !== undefined) {
           // print out each individual clue and format with checkbox
           // check if checkbox should be checked or not 
-          element.clue_list.forEach(function(clue)) {
-
-          }
-          if (element.clue.known == true) {
-
+          if (element.clue[1].known == true) {
+            sceneInfo.insertAdjacentHTML( 'beforeend', "<p class='hangingindent'><input type='checkbox' checked>  " + element.clue[0] + "</p>");
           } else {
-             sceneInfo.insertAdjacentHTML( 'beforeend', "<li><input type='checkbox'>" + element.clue[0] + " </li>");
+             sceneInfo.insertAdjacentHTML( 'beforeend', "<p class='hangingindent'><input type='checkbox'> " + element.clue[0] + "</p>");
           }
         } else {
           sceneInfo.insertAdjacentHTML( 'beforeend', "<p>" + element + " </p>");

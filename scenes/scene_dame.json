@@ -1,11 +1,10 @@
 {
-   "title": "A Dame Comes Into Your Office",
-   "scene_type": "Opener",
    "lead_outs": [
       "<a href='scene_girl.html'>The Girl with Death in her Eyes</a>",
       "<a href='scene_typewriter.html'>Typewriter Alley</a>",
       "<a href='scene_order.html'>The Order of Argent Light</a>"
    ],
+   "scene_type": "Opener",
    "text": [
       "The action begins in the dingy Bunker Hill office of Dex Raymond's one-man private detective agency.",
       "Ask the player to select one of the following opening Problems. These appear as the first four Problem cards in the set that accompanies this scenario, as found on p. 142: \"What Killed the Cat,\" \"Lonely,\" \"Broke,\" and \"Vice Hound.\" Let the player read the text of all four cards before choosing.",
@@ -21,7 +20,7 @@
          "clue": [
             "Six weeks ago, her sister Helen went missing.",
             {
-               "known": true
+               "known": false
             }
          ]
       },
@@ -33,25 +32,131 @@
             }
          ]
       },
-      "<li><input type='checkbox'> On arrival, Helen did not seem to recognize her sister. She has been all but mute and nearly catatonic ever since, despite receiving the best care money can buy.</li>",
-      "<li><input type='checkbox'> The police performed a half-hearted investigation but turned up nothing useful. Margaret didn’t push them. If Helen had gotten mixed up in something scandalous, she’d rather have that information under her control, not the cops’.</li>",
-      "<li><input type='checkbox'> Margaret admits she might have waited too long to take action. She was hoping her sister would show signs of recovery. Now, as she increasingly fears that she'll never get the story from Helen, she realizes she really does want to get the sons of bitches who did this.</li>",
-      "<li><input type='checkbox'> Helen suffered superficial cuts and scrapes during her mysterious ordeal, but no serious physical injuries.</li>",
-      "<li><input type='checkbox'> Someone knows something about this. Margaret suspects that somebody did this to her on purpose, but that’s just a hunch. That’s why she’s hiring Dex — to find out if this was so. And if it was, to do something about it.</li></ul>",
+      {
+         "clue": [
+            "On arrival, Helen did not seem to recognize her sister. She has been all but mute and nearly catatonic ever since, despite receiving the best care money can buy.",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "The police performed a half-hearted investigation but turned up nothing useful. Margaret didn’t push them. If Helen had gotten mixed up in something scandalous, she’d rather have that information under her control, not the cops’.",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "Margaret admits she might have waited too long to take action. She was hoping her sister would show signs of recovery. Now, as she increasingly fears that she'll never get the story from Helen, she realizes she really does want to get the sons of bitches who did this.",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "Helen suffered superficial cuts and scrapes during her mysterious ordeal, but no serious physical injuries.",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "Someone knows something about this. Margaret suspects that somebody did this to her on purpose, but that’s just a hunch. That’s why she’s hiring Dex — to find out if this was so. And if it was, to do something about it.",
+            {
+               "known": false
+            }
+         ]
+      },
       "Dex can call on his existing background knowledge for the following. Give the player time to draw on them, but provide them as an example of the sorts of questions she should be asking if she’s new to investigative roleplaying and hasn’t quite caught on yet.",
       "<strong>Accounting:</strong> Despite her youth, Margaret runs the day-to-day operations of her father’s real estate development firm. Word has it that she’s a tough cookie, routinely outmaneuvering local business tycoons who underestimate her on account of her youth and sex.",
       "<strong>Cop Talk:</strong> A well-connected rich girl like Helen could get into a lot of trouble and count on the police to help keep it all quiet.",
       "In response to specific questions, Margaret supplies the following additional information:",
-      "<ul><li><input type='checkbox'> She, Helen, and her father, plus a few key servants, live in the manor. None of the family members spend prolonged time together these days.</li>",
-      "<li><input type='checkbox'> After Margaret’s mother died about two years ago, her father retired to pursue his personal interests.</li>",
-      "<li><input type='checkbox'> Helen has always been a little wild. Margaret has to take the role of the responsible one time and again.</li>",
-      "<li><input type='checkbox'> Margaret confesses that she has not always been able to conceal her disapproval of Helen’s waywardness. Helen stopped confiding in her years ago.</li>",
-      "<li><input type='checkbox'>(Core, \"Order of the Argent Light\") When their mother became ill, Helen started talking nonsense about auras and Secret Masters and pyramids. Margaret doesn’t know who dragged her into that nonsense, but she does remember repeatedly hearing the phrase \"Argent Light.\"</li>",
-      "<li><input type='checkbox'> Helen seemed to be juggling several men.</li>",
-      "<li><input type='checkbox'> (Core, \"Typewriter Alley\") The only man Margaret can name is Marshall Daly, a screenwriter at Capitol Pictures. Margaret only met him a few times. He struck her as handsome and angry, and probably the jealous type.</li>",
-      "<li><input type='checkbox'> The last time Margaret saw him was... oh, it must have been five weeks ago. He came to the house asking after Helen. This was back when she was still missing. Trying to see if he might be involved, she stayed tight-lipped.</li>",
-      "<li><input type='checkbox'> If Dex asks to interview Helen directly, Margaret expresses reluctance. \"You won’t get anything out of her. At best, you'll throw her into one of her fits.\" A Reassurance Push impels Margaret to relent, leading to \"The Girl with Death in Her Eyes.\" Otherwise, Dex will have to do more digging first, and then convince Margaret that he’s hit a dead end, before she’ll allow him to talk to her sister.</li>",
-      "<li><input type='checkbox'> Regarding Helen’s condition when she reappeared, Margaret says whatever injuries caused the bloodstains on the camisole had already healed by that time. The doctor found no trace of significant wounds, just some bruises and superficial cuts.</li></ul>",
+      {
+         "clue": [
+            "She, Helen, and her father, plus a few key servants, live in the manor. None of the family members spend prolonged time together these days.",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "After Margaret’s mother died about two years ago, her father retired to pursue his personal interests.",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "Helen has always been a little wild. Margaret has to take the role of the responsible one time and again.",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "Margaret confesses that she has not always been able to conceal her disapproval of Helen’s waywardness. Helen stopped confiding in her years ago.",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "(Core, \"Order of the Argent Light\") When their mother became ill, Helen started talking nonsense about auras and Secret Masters and pyramids. Margaret doesn’t know who dragged her into that nonsense, but she does remember repeatedly hearing the phrase \"Argent Light.\"",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "Helen seemed to be juggling several men.",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "(Core, \"Typewriter Alley\") The only man Margaret can name is Marshall Daly, a screenwriter at Capitol Pictures. Margaret only met him a few times. He struck her as handsome and angry, and probably the jealous type.",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "The last time Margaret saw him was... oh, it must have been five weeks ago. He came to the house asking after Helen. This was back when she was still missing. Trying to see if he might be involved, she stayed tight-lipped.",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "If Dex asks to interview Helen directly, Margaret expresses reluctance. \"You won’t get anything out of her. At best, you'll throw her into one of her fits.\" A Reassurance Push impels Margaret to relent, leading to \"The Girl with Death in Her Eyes.\" Otherwise, Dex will have to do more digging first, and then convince Margaret that he’s hit a dead end, before she’ll allow him to talk to her sister.",
+            {
+               "known": false
+            }
+         ]
+      },
+      {
+         "clue": [
+            "Regarding Helen’s condition when she reappeared, Margaret says whatever injuries caused the bloodstains on the camisole had already healed by that time. The doctor found no trace of significant wounds, just some bruises and superficial cuts.",
+            {
+               "known": false
+            }
+         ]
+      },
       "If asked, Margaret arranges to deliver the camisole Helen was wearing when she reappeared. Asking his scientific source Virginia Ashbury to run a Forensics reveals that the blood doesn’t match Helen’s blood type. To make the match, Dex can get Helen’s medical records from her sister."
-   ]
+   ],
+   "title": "A Dame Comes Into Your Office"
 }
