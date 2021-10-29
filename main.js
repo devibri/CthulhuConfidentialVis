@@ -3,6 +3,8 @@ mermaid.initialize({
   securityLevel: 'loose'
 });
 
+var sceneJSON; 
+
 var loadScene = function(scene_name) {
   var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/" + scene_name.toLowerCase() + ".json";
 
@@ -15,9 +17,9 @@ var loadScene = function(scene_name) {
           console.log('JSON FAILED for data');
         },
       success:function(results){
+        sceneJSON = results;
     /* the results is your json, you can reference the elements directly by using it here, without creating any additional variables */
-    
-        var sceneInfo = document.getElementById("sceneInfo");
+        sceneInfo = document.getElementById("sceneInfo");
         $('#sceneInfo').empty();
         // print out the title scene and type
         sceneInfo.insertAdjacentHTML( 'beforeend', "<h1>" + results.title + " </h1>");
@@ -47,8 +49,18 @@ var loadScene = function(scene_name) {
    }) 
 }
 
+
+// When you click the checkbox, have this update the result in the JSON
 $(document).on("click", "input[name='clue']", function () {
-  console.log($(this).prop('checked'));
-  console.log(this);
-  console.log(this.nextSibling);
+  var checked = $(this).prop('checked');
+  var clueText = this.nextSibling.data.trim();
+  // Go through each clue and find the one that matches the checkbox, then change the data for that clue to be known/unknown
+  sceneJSON.text.forEach(function(element) {
+    if (element.clue !== undefined && clueText == element.clue[0]) {
+      element.clue[1].known = checked;
+      console.log(element.clue[1].known);
+      // TODO: after this is done, should update the JSON file
+    } 
+  }); 
 });
+
