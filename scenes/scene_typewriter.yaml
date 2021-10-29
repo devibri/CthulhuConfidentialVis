@@ -1,11 +1,11 @@
 ---
 title: Typewriter Alley
 scene-type: Core
-lead-ins: 
+lead_ins: 
   - <a href='scene_dame.html'>A Dame Comes into Your Office</a>
   - <a href='scene_order.html'>The Order of Argent Light</a>
   - <a href='scene_alegria.html'>The Alegria</a>
-lead-outs: 
+lead_outs: 
   - <a href='scene_order.html'>The Order of Argent Light</a>
   - <a href='scene_franz.html'>Franz's Spiel</a>
   - <a href='scene_alegria.html'>The Alegria</a>

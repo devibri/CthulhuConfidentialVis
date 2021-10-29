@@ -11,10 +11,10 @@
   <div class="column">
     <div class="mermaid">
        graph TD
-         Scene_Dame["&lt;a href&#61;&#39;&#39; onclick&#61;&#39;loadScene(scene_dame)&#39; &gt;A Dame Comes Into Your Office&lt;/a&gt;"] 
-         Scene_Typewriter["&lt;a href&#61;&#39;&#39; onclick&#61;&#39;loadScene(scene_typewriter)&#39; &gt;Typewriter Alley&lt;/a&gt;"]
-         Scene_Order["&lt;a href&#61;&#39;scenes/scene_order.html&#39; target&#61;&#39;myiframe&#39; &gt;The Order of Argent Light&lt;/a&gt;"]
-         Scene_Girl["&lt;a href&#61;&#39;scenes/scene_girl.html&#39; target&#61;&#39;myiframe&#39; &gt;The Girl with Death in her Eyes&lt;/a&gt;"]
+         Scene_Dame[A Dame Comes Into Your Office] 
+         Scene_Typewriter[Typewriter Alley]
+         Scene_Order[The Order of Argent Light]
+         Scene_Girl[The Girl with Death in her Eyes]
          Scene_Franz[Franz's Spiel]
          Scene_Guest[The Guest House]
          Scene_Into[Into the Hypno-Dimensional]
@@ -61,6 +61,8 @@
          Scene_Bugsy --> Scene_Hole
          Scene_Missing --> Scene_Hole
          Scene_Mickey --> Scene_Hole
+         click Scene_Dame loadScene
+         click Scene_Typewriter loadScene
      </div>
   </div>
   <div class="column">
@@ -68,32 +70,3 @@
   </div>
   </div>
 </body>
-
-
-<!-- <head>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.css" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.js"></script>
-  <script src="main.js"></script>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="row">
-  <div class="column">
-    <iframe  src="flowchart.html" frameborder="0" scrolling="yes" style="overflow: hidden; height: 100%; width: 40%; " height="100%" width="40%" align="left"></iframe>
-  </div>
-  <div class="column">
-    <div class="resizable"><iframe name="myiframe" src="scenes/scene_dame.html" frameborder="0" scrolling="yes" style="overflow: hidden; height: 100%; width: 60%; "height="100%" width="60%" align="right"></iframe></div>
-  </div>
-  </div>
-</body> --><!-- 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="main.js"></script>
-
-<h1>My Cart</h1>
-<div id="cart">
-    <h2>Cart Items</h2>
-    <ul id="cartItemsList">
-    </ul>
-</div> -->
