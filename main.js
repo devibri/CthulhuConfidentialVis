@@ -34,9 +34,9 @@ var loadScene = function(scene_name) {
             // print out each individual clue and format with checkbox
             // check if checkbox should be checked or not 
             if (element.clue[1].known == true) {
-              sceneInfo.insertAdjacentHTML( 'beforeend', "<p class='hangingindent'><input type='checkbox' checked>  " + element.clue[0] + "</p>");
+              sceneInfo.insertAdjacentHTML( 'beforeend', "<p class='hangingindent'><input type='checkbox' name='clue' checked>  " + element.clue[0] + "</p>");
             } else {
-               sceneInfo.insertAdjacentHTML( 'beforeend', "<p class='hangingindent'><input type='checkbox'> " + element.clue[0] + "</p>");
+               sceneInfo.insertAdjacentHTML( 'beforeend', "<p class='hangingindent'><input type='checkbox' name='clue'> " + element.clue[0] + "</p>");
             }
           } else {
             sceneInfo.insertAdjacentHTML( 'beforeend', "<p>" + element + " </p>");
@@ -46,3 +46,9 @@ var loadScene = function(scene_name) {
      }) 
    }) 
 }
+
+$(document).on("click", "input[name='clue']", function () {
+  console.log($(this).prop('checked'));
+  console.log(this);
+  console.log(this.nextSibling);
+});
