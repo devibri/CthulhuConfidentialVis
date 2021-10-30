@@ -1,6 +1,6 @@
 mermaid.initialize({
   startOnLoad: true,
-  securityLevel: 'loose'
+  securityLevel: 'loose',
 });
 
 var sceneJSON; 
@@ -10,6 +10,7 @@ var currentSceneName;
 document.addEventListener("DOMContentLoaded", function() {
   localStorage.clear();
   loadScene("scene_dame");
+  //renderGraph();
 });
 
 // serve up the appropriate scene by either pulling it from local storage or fetching from the appropriate URL
@@ -81,3 +82,15 @@ $(document).on("click", "input[name='clue']", function () {
   // TODO: after this is done, should update the JSON file
   localStorage.setItem(currentSceneName, JSON.stringify(sceneJSON));
 });
+
+function renderGraph() {
+  // Example of using the API
+  var element = document.querySelector("#graphInfo");
+
+  var insertSvg = function(svgCode, bindFunctions){
+    element.innerHTML = svgCode;
+  };
+ //var graphDefinition = 'graph TB\na-->b';
+  var graphDefinition = "graph TB\nScene_Dame[A Dame Comes Into Your Office]\nScene_Typewriter[Typewriter Alley]\nScene_Order[The Order of Argent Light]\nScene_Girl[The Girl with Death in her Eyes]\nScene_Franz[Franz's Spiel]\nScene_Guest[The Guest House]\nScene_Into[Into the Hypno-Dimensional]\nScene_Revisiting[Revisiting Margaret]\nScene_Alegria[The Alegria]\nScene_Bumping[Bumping into Roscoe]\nScene_Money[The Money Man]\nScene_Squeeze[The Squeeze Artist]\nScene_Top[Top of the System]\nScene_New[New Blood]\nScene_Mickey[Mickey Knows a Guy]\nScene_Bugsy[Bugsy's Weird Rock]\nScene_Missing[The Missing Ex-Cop]\nScene_Hole[The Hole]\nScene_Dame --> Scene_Typewriter\nScene_Dame --> Scene_Order\nScene_Dame --> Scene_Girl\nScene_Franz --> Scene_Guest\nScene_Typewriter --> Scene_Franz\nScene_Typewriter --> Scene_Order\nScene_Typewriter --> Scene_Alegria\nScene_Order --> Scene_Typewriter\nScene_Order --> Scene_Revisiting\nScene_Order --> Scene_Girl\nScene_Girl --> Scene_Bumping\nScene_Guest --> Scene_Money\nScene_Guest --> Scene_Into\nScene_Into --> Scene_Revisiting\nScene_Revisiting --> Scene_Bumping\nScene_Revisiting --> Scene_Alegria\nScene_Alegria --> Scene_Squeeze\nScene_Alegria --> Scene_Money\nScene_Alegria --> Scene_Top\nScene_Bumping --> Scene_Alegria\nScene_Money --> Scene_Squeeze\nScene_Money --> Scene_Guest\nScene_Squeeze --> Scene_Top\nScene_Squeeze --> Scene_Mickey\nScene_Top --> Scene_Missing\nScene_Top --> Scene_New\nScene_New --> Scene_Mickey\nScene_New --> Scene_Bugsy\nScene_Bugsy --> Scene_Mickey\nScene_Bugsy --> Scene_Hole\nScene_Missing --> Scene_Hole\nScene_Mickey --> Scene_Hole\nclick Scene_Dame loadScene\nclick Scene_Typewriter loadScene";
+  var graph = mermaid.mermaidAPI.render('graphInfo', graphDefinition, insertSvg);
+}
