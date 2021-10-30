@@ -6,15 +6,17 @@ mermaid.initialize({
 var sceneJSON; 
 
 document.addEventListener("DOMContentLoaded", function() {
+  localStorage.clear();
   loadScene("scene_dame");
 });
 
 var loadScene = function(scene_name) {
   // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
   if (localStorage.getItem(scene_name.toLowerCase()) === null) {
+    console.log("Couldn't find scene " + scene_name + " in local storage");
     var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/" + scene_name.toLowerCase() + ".json";
     /* this tells the page to wait until jQuery has loaded, so you can use the Ajax call */
-  $(document).ready(function(){
+  //$(document).ready(function(){
     $.ajax({
       url: url,
       dataType: 'json',
@@ -22,29 +24,36 @@ var loadScene = function(scene_name) {
           console.log('JSON FAILED for data');
         },
       success:function(results){
+        console.log(results);
         sceneJSON = results; // record the results of the json query and save that to a variable
-    
+        console.log("setting sceneJSON to: " + sceneJSON);
+        parseScene(results);
       } 
      }) 
-   }) 
-  //...
+   //}) 
   } else {
     sceneJSON = JSON.parse(localStorage.getItem('scene_dame'));
+    parseScene(sceneJSON);
   }
+}
+
+function parseScene(result) {
+  console.log("SceneJSON is: " + result);
   /* now go through the JSON and serve up the appropriate webpage based on that */
         sceneInfo = document.getElementById("sceneInfo");
         $('#sceneInfo').empty();
         // print out the title scene and type
-        sceneInfo.insertAdjacentHTML( 'beforeend', "<h1>" + sceneJSON.title + " </h1>");
+        sceneInfo.insertAdjacentHTML( 'beforeend', "<h1>" + result.title + " </h1>");
         sceneInfo.insertAdjacentHTML( 'beforeend', "<p><em>Scene Type: " + sceneJSON.scene_type + " </em></p>");
         // print out and format a list of the lead outs
         sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Outs: ");
-        sceneJSON.lead_outs.forEach(function(element) {
+        result.lead_outs.forEach(function(element) {
+          console.log(element);
           sceneInfo.insertAdjacentHTML( 'beforeend', element + " | ");
         });
         sceneInfo.insertAdjacentHTML( 'beforeend',"<hr>");
         // print out list of text in the scene
-        sceneJSON.text.forEach(function(element) {
+        result.text.forEach(function(element) {
           if (element.clue !== undefined) {
             // print out each individual clue and format with checkbox
             // check if checkbox should be checked or not 

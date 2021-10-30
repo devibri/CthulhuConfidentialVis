@@ -3,7 +3,7 @@ title: A Dame Comes Into Your Office
 scene_type: Opener
 lead_outs: 
   - The Girl with Death in her Eyes
-  - <div class='link'><a href='scene_typewriter'>Typewriter Alley</a></div>
+  - <div class='link'><a href='scene_typewriter.json'>Typewriter Alley</a></div>
   - The Order of Argent Light
 text: 
   - The action begins in the dingy Bunker Hill office of Dex Raymond's one-man private detective agency.
