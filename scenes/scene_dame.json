@@ -3,7 +3,8 @@
    "scene_type": "Opener",
    "lead_outs": [
       "The Girl with Death in her Eyes",
-      "<div class='link'><a href='scene_typewriter.json'>Typewriter Alley</a></div>",
+      "<input id='scene_link' type='button' value='Typewriter Alley' onclick='loadScene();' />",
+      // "<div class='link'><a href='scene_typewriter.json'>Typewriter Alley</a></div>",
       "The Order of Argent Light"
    ],
    "text": [

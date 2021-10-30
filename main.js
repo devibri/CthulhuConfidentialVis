@@ -84,8 +84,8 @@ $(document).on("click", "input[name='clue']", function () {
 });
 
 //in clicking link to another scene, load in that scene
-jQuery( 'div.link a' )
-    .click(function() {
+jQuery( 'div.link a' ).click(function() {
+      console.log("going to scene " + this.href);
         go_to_scene( this.href );
         return false;
     });
@@ -93,6 +93,7 @@ jQuery( 'div.link a' )
 // play the funky music white boy
 function go_to_scene( url )
 {
+
     alert( url );
     loadScene(url);
 }
