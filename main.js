@@ -5,10 +5,15 @@ mermaid.initialize({
 
 var sceneJSON; 
 
-var loadScene = function(scene_name) {
-  var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/" + scene_name.toLowerCase() + ".json";
+document.addEventListener("DOMContentLoaded", function() {
+  loadScene("scene_dame");
+});
 
-  /* this tells the page to wait until jQuery has loaded, so you can use the Ajax call */
+var loadScene = function(scene_name) {
+  // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
+  if (localStorage.getItem(scene_name.toLowerCase()) === null) {
+    var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/" + scene_name.toLowerCase() + ".json";
+    /* this tells the page to wait until jQuery has loaded, so you can use the Ajax call */
   $(document).ready(function(){
     $.ajax({
       url: url,
@@ -17,21 +22,29 @@ var loadScene = function(scene_name) {
           console.log('JSON FAILED for data');
         },
       success:function(results){
-        sceneJSON = results;
-    /* the results is your json, you can reference the elements directly by using it here, without creating any additional variables */
+        sceneJSON = results; // record the results of the json query and save that to a variable
+    
+      } 
+     }) 
+   }) 
+  //...
+  } else {
+    sceneJSON = JSON.parse(localStorage.getItem('scene_dame'));
+  }
+  /* now go through the JSON and serve up the appropriate webpage based on that */
         sceneInfo = document.getElementById("sceneInfo");
         $('#sceneInfo').empty();
         // print out the title scene and type
-        sceneInfo.insertAdjacentHTML( 'beforeend', "<h1>" + results.title + " </h1>");
-        sceneInfo.insertAdjacentHTML( 'beforeend', "<p><em>Scene Type: " + results.scene_type + " </em></p>");
+        sceneInfo.insertAdjacentHTML( 'beforeend', "<h1>" + sceneJSON.title + " </h1>");
+        sceneInfo.insertAdjacentHTML( 'beforeend', "<p><em>Scene Type: " + sceneJSON.scene_type + " </em></p>");
         // print out and format a list of the lead outs
         sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Outs: ");
-        results.lead_outs.forEach(function(element) {
+        sceneJSON.lead_outs.forEach(function(element) {
           sceneInfo.insertAdjacentHTML( 'beforeend', element + " | ");
         });
         sceneInfo.insertAdjacentHTML( 'beforeend',"<hr>");
         // print out list of text in the scene
-        results.text.forEach(function(element) {
+        sceneJSON.text.forEach(function(element) {
           if (element.clue !== undefined) {
             // print out each individual clue and format with checkbox
             // check if checkbox should be checked or not 
@@ -44,9 +57,6 @@ var loadScene = function(scene_name) {
             sceneInfo.insertAdjacentHTML( 'beforeend', "<p>" + element + " </p>");
           }
         }); 
-      } 
-     }) 
-   }) 
 }
 
 
@@ -58,9 +68,22 @@ $(document).on("click", "input[name='clue']", function () {
   sceneJSON.text.forEach(function(element) {
     if (element.clue !== undefined && clueText == element.clue[0]) {
       element.clue[1].known = checked;
-      console.log(element.clue[1].known);
-      // TODO: after this is done, should update the JSON file
     } 
   }); 
+  // TODO: after this is done, should update the JSON file
+  localStorage.setItem('scene_dame', JSON.stringify(sceneJSON));
 });
 
+//in clicking link to another scene, load in that scene
+jQuery( 'div.link a' )
+    .click(function() {
+        go_to_scene( this.href );
+        return false;
+    });
+
+// play the funky music white boy
+function go_to_scene( url )
+{
+    alert( url );
+    loadScene(url);
+}
