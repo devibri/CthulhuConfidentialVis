@@ -2,7 +2,7 @@
    "title": "Typewriter Alley",
    "scene_type": "Core",
    "lead_ins": [
-      "<a href='javascript:loadScene(id)' id='scene_dame'>A Dame Comes into Your Office</a>",
+      "<a id='scene_dame' href='javascript:loadScene(id)'>A Dame Comes into Your Office</a>",
       "The Order of Argent Light",
       "The Alegria"
    ],
