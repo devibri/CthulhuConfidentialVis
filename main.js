@@ -47,6 +47,11 @@ function parseScene(result) {
   $('#sceneInfo').empty();
   // print out the title scene and type
   sceneInfo.insertAdjacentHTML( 'beforeend', "<h1>" + result.title + " </h1>");
+  if (result.visited) {
+     sceneInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='visited' checked>");
+  } else {
+    sceneInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='visited'>");
+  }
   sceneInfo.insertAdjacentHTML( 'beforeend', "<p><em>Scene Type: " + result.scene_type + " </em></p>");
   if (result.lead_ins != null) {
     sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Ins: ");
@@ -80,7 +85,7 @@ function parseScene(result) {
   }); 
 }
 
-// When you click the checkbox, have this update the result in the JSON
+// When you click the checkbox for a clue, have this update the result in the JSON
 $(document).on("click", "input[name='clue']", function () {
   var checked = $(this).prop('checked');
   var clueText = this.nextSibling.data.trim();
@@ -93,6 +98,18 @@ $(document).on("click", "input[name='clue']", function () {
   // after this is done, should update the JSON file
   localStorage.setItem(currentSceneName, JSON.stringify(sceneJSON));
 });
+
+// When you click the checkbox for visited, have this update the graph and the JSON
+$(document).on("click", "input[name='visited']", function () {
+  var checked = $(this).prop('checked');
+  sceneJSON.visited = checked; 
+  // after this is done, should update the JSON file
+  localStorage.setItem(currentSceneName, JSON.stringify(sceneJSON));
+
+  
+});
+
+
 
 function parseGraph() {
   var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/graph.json";
@@ -123,4 +140,4 @@ function renderGraph(graphDefinition) {
   mermaid.mermaidAPI.render('graphInfo', graphDefinition, insertSvg);
 }
 
-// 
+
