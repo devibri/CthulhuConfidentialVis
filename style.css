@@ -1,7 +1,7 @@
-div.mermaid {
+/*div.mermaid {
     text-align: center;
 }
-
+*/
 html * {
   font-size: 16px;
   line-height: 1.525;
@@ -42,8 +42,9 @@ li {
 svg {
   /*height: 100%;
   width: 100%;*/
-  height: 1000px;
-  width: 800px;
-  transform: scale(.55);
-  
+  margin-left: -190;
+  height: 1800px;
+  width: 1200px;
+  transform: scale(.7);
+
 }

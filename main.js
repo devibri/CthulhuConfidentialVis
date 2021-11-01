@@ -3,6 +3,7 @@ mermaid.initialize({
   securityLevel: 'loose',
 });
 
+
 var sceneJSON; 
 var currentSceneName;
 var graph;
@@ -118,6 +119,7 @@ function renderGraph(graphDefinition) {
 
   var insertSvg = function(svgCode, bindFunctions){
     element.innerHTML = svgCode;
+    element.setAttribute("style", "max-width: 1000px !important")
   };
-  var graph = mermaid.mermaidAPI.render('graphInfo', graphDefinition, insertSvg);
+  mermaid.mermaidAPI.render('graphInfo', graphDefinition, insertSvg);
 }
