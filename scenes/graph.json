@@ -52,6 +52,9 @@
       "Scene_Missing --> Scene_Hole",
       "Scene_Mickey --> Scene_Hole",
       "click Scene_Dame loadScene",
-      "click Scene_Typewriter loadScene"
+      "click Scene_Typewriter loadScene",
+      "class Scene_Dame completed;",
+      "classDef completed fill:#fcba04,stroke:#333,stroke-width:4px;",
+      "classDef default fill:#ffe169,stroke:#333,stroke-width:2px;"
    ]
 }
