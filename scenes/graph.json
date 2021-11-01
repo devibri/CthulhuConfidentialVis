@@ -1,7 +1,7 @@
 {
    "graph": [
       "graph TD",
-      "Scene_Dame[<input id='scene_typewriter' type='button' value='A Dame Comes into Your Office' onclick='loadScene(id);' />]",
+      "Scene_Dame[A Dame Comes Into Your Office]",
       "Scene_Typewriter[Typewriter Alley]",
       "Scene_Order[The Order of Argent Light]",
       "Scene_Girl[The Girl with Death in her Eyes]",
