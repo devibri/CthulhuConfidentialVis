@@ -119,7 +119,7 @@ function renderGraph(graphDefinition) {
 
   var insertSvg = function(svgCode, bindFunctions){
     element.innerHTML = svgCode;
-    element.setAttribute("style", "max-width: 1000px !important")
+    // element.setAttribute("style", "max-width: 1000px !important")
   };
   mermaid.mermaidAPI.render('graphInfo', graphDefinition, insertSvg);
 }

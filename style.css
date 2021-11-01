@@ -40,11 +40,9 @@ li {
 } 
 
 svg {
-  /*height: 100%;
-  width: 100%;*/
   margin-left: -190;
   height: 1800px;
   width: 1200px;
-  transform: scale(.7);
+  transform: scale(.65);
 
 }
