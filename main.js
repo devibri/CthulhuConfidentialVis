@@ -10,11 +10,12 @@ var currentSceneName;
 document.addEventListener("DOMContentLoaded", function() {
   localStorage.clear();
   loadScene("scene_dame");
-  //renderGraph();
+  renderGraph();
 });
 
 // serve up the appropriate scene by either pulling it from local storage or fetching from the appropriate URL
 var loadScene = function(scene_name) {
+  console.log(scene_name);
   currentSceneName = scene_name.toLowerCase();
   // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
   if (localStorage.getItem(currentSceneName) === null) {
@@ -41,17 +42,27 @@ var loadScene = function(scene_name) {
 // takes the scene you're trying to load and renders it 
 function parseScene(result) {
   /* now go through the JSON and serve up the appropriate webpage based on that */
-  sceneInfo = document.getElementById("sceneInfo");
+  var sceneInfo = parent.document.getElementById("sceneInfo");
+  console.log("Sceneinfo is " + sceneInfo);
   // clear the current thing in the div
   $('#sceneInfo').empty();
   // print out the title scene and type
   sceneInfo.insertAdjacentHTML( 'beforeend', "<h1>" + result.title + " </h1>");
   sceneInfo.insertAdjacentHTML( 'beforeend', "<p><em>Scene Type: " + result.scene_type + " </em></p>");
+  if (result.lead_ins != null) {
+    sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Ins: ");
+    result.lead_ins.forEach(function(element) {
+      sceneInfo.insertAdjacentHTML( 'beforeend', element + " | ");
+    });
+  }
   // print out and format a list of the lead outs
-  sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Outs: ");
-  result.lead_outs.forEach(function(element) {
-    sceneInfo.insertAdjacentHTML( 'beforeend', element + " | ");
-  });
+  if (result.lead_outs != null) {
+    sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Outs: ");
+    result.lead_outs.forEach(function(element) {
+      sceneInfo.insertAdjacentHTML( 'beforeend', element + " | ");
+    });
+  }
+ 
   sceneInfo.insertAdjacentHTML( 'beforeend',"<hr>");
   // print out list of text in the scene
   result.text.forEach(function(element) {

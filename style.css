@@ -28,13 +28,18 @@ li {
   display: table;
   clear: both;
 }
-
+/*
 .mermaid {
-	height:130% !important; 
+	height:150% !important; 
 	
-}
+}*/
 
 .hangingindent {
   padding-left: 22px ;
   text-indent: -22px ;
 } 
+
+svg {
+  height: 2000px;
+  width: 1200px;
+}
