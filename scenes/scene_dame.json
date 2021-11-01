@@ -1,5 +1,6 @@
 {
    "title": "A Dame Comes Into Your Office",
+   "visited": false,
    "scene_type": "Opener",
    "lead_outs": [
       "The Girl with Death in her Eyes",
@@ -55,7 +56,25 @@
             {
                "known": false
             }
-         ]
+         ]{
+   "title": "Typewriter Alley",
+   "visited": false,
+   "scene_type": "Core",
+   "lead_ins": [
+      "<input id='scene_dame' type='button' value='A Dame Comes into Your Office' onclick='loadScene(id);' />\"",
+      "The Order of Argent Light",
+      "The Alegria"
+   ],
+   "lead_outs": [
+      "The Order of Argent Light",
+      "Franz's Spiel",
+      "The Alegria"
+   ],
+   "text": [
+      "Dashing screenwriter Marshall Daly could double as a matinee idol — if he was willing to get out of bed as early as a movie actor has to. Author of pseudonymous paperback thrillers and a rising screenwriter at Capitol Pictures, he staggers into the studio writer’s complex, nicknamed Typewriter Alley, in the early afternoon every weekday.",
+      "Typewriter Alley resembles a one-story motel, with a line of offices connected by a long wooden porch under a terracotta-tiled awning. Although security guards protect the studio’s soundstages and outdoor standing sets from overeager fans and stalkers, no one cares about the boring office areas. Dex can slip in unnoticed without resistance — or simply stride confidently in as if he has business here."
+   ]
+}
       },
       {
          "clue": [
