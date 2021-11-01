@@ -42,7 +42,7 @@ var loadScene = function(scene_name) {
 // takes the scene you're trying to load and renders it 
 function parseScene(result) {
   /* now go through the JSON and serve up the appropriate webpage based on that */
-  var sceneInfo = parent.document.getElementById("sceneInfo");
+  var sceneInfo = document.getElementById("sceneInfo");
   console.log("Sceneinfo is " + sceneInfo);
   // clear the current thing in the div
   $('#sceneInfo').empty();
@@ -50,16 +50,19 @@ function parseScene(result) {
   sceneInfo.insertAdjacentHTML( 'beforeend', "<h1>" + result.title + " </h1>");
   sceneInfo.insertAdjacentHTML( 'beforeend', "<p><em>Scene Type: " + result.scene_type + " </em></p>");
   if (result.lead_ins != null) {
+    console.log("printing lead ins");
     sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Ins: ");
     result.lead_ins.forEach(function(element) {
-      sceneInfo.insertAdjacentHTML( 'beforeend', element + " | ");
+      sceneInfo.insertAdjacentHTML( 'beforeend', " | " + element);
     });
   }
+  sceneInfo.insertAdjacentHTML( 'beforeend',"<br>");
   // print out and format a list of the lead outs
   if (result.lead_outs != null) {
+    console.log("printing lead outs");
     sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Outs: ");
     result.lead_outs.forEach(function(element) {
-      sceneInfo.insertAdjacentHTML( 'beforeend', element + " | ");
+      sceneInfo.insertAdjacentHTML( 'beforeend', " | " + element);
     });
   }
  
