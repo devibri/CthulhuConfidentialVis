@@ -11,16 +11,14 @@ var graph;
 document.addEventListener("DOMContentLoaded", function() {
   localStorage.clear();
   loadScene("scene_dame");
-  renderGraph();
+  parseGraph();
 });
 
 // serve up the appropriate scene by either pulling it from local storage or fetching from the appropriate URL
 var loadScene = function(scene_name) {
-  console.log(scene_name);
   currentSceneName = scene_name.toLowerCase();
   // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
   if (localStorage.getItem(currentSceneName) === null) {
-    console.log("Couldn't find scene " + currentSceneName + " in local storage");
     var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/" + currentSceneName + ".json";
     // use AJAX to fetch the appropriate JSON data
     $.ajax({
@@ -50,7 +48,6 @@ function parseScene(result) {
   sceneInfo.insertAdjacentHTML( 'beforeend', "<h1>" + result.title + " </h1>");
   sceneInfo.insertAdjacentHTML( 'beforeend', "<p><em>Scene Type: " + result.scene_type + " </em></p>");
   if (result.lead_ins != null) {
-    console.log("printing lead ins");
     sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Ins: ");
     result.lead_ins.forEach(function(element) {
       sceneInfo.insertAdjacentHTML( 'beforeend', " | " + element);
@@ -59,7 +56,6 @@ function parseScene(result) {
   sceneInfo.insertAdjacentHTML( 'beforeend',"<br>");
   // print out and format a list of the lead outs
   if (result.lead_outs != null) {
-    console.log("printing lead outs");
     sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Outs: ");
     result.lead_outs.forEach(function(element) {
       sceneInfo.insertAdjacentHTML( 'beforeend', " | " + element);
@@ -93,16 +89,13 @@ $(document).on("click", "input[name='clue']", function () {
       element.clue[1].known = checked;
     } 
   }); 
-  // TODO: after this is done, should update the JSON file
+  // after this is done, should update the JSON file
   localStorage.setItem(currentSceneName, JSON.stringify(sceneJSON));
 });
 
-// dynamically serve up the graph
-function renderGraph() {
-  // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
-  if (localStorage.getItem(graph) === null) {
-    var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/graph.json";
-    // use AJAX to fetch the appropriate JSON data
+function parseGraph() {
+  var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/graph.json";
+  // use AJAX to fetch the appropriate JSON data
     $.ajax({
       url: url,
       dataType: 'json',
@@ -110,34 +103,21 @@ function renderGraph() {
         console.log('JSON FAILED for data');
       },
       success:function(results){
-        console.log("found JSON file for graph");
-        graph = results; // record the results of the json query and save that to a variable
-        parseGraph(results);
-      } 
-    }) 
- } else {
-  var results = JSON.parse(localStorage.getItem(graph));
-  parseGraph(results);
-}
-}
-
-function parseGraph(graphData) {
-  var graphDefinition = "";
-  graphData.graph.forEach(function(element) {
-    //console.log(element);
-    graphDefinition = graphDefinition + element + "\n";
-
+        var graphDefinition = "";
+        results.graph.forEach(function(element) {
+          graphDefinition = graphDefinition + element + "\n"; 
+        }); 
+        renderGraph(graphDefinition);
+      }
   });
- console.log(graphDefinition);
+}
 
+function renderGraph(graphDefinition) {
   // Example of using the API
   var element = document.querySelector("#graphInfo");
 
   var insertSvg = function(svgCode, bindFunctions){
     element.innerHTML = svgCode;
   };
-  console.log("updating graph");
   var graph = mermaid.mermaidAPI.render('graphInfo', graphDefinition, insertSvg);
-  console.log("graph updated");
 }
-
