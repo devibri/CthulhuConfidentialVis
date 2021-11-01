@@ -12,7 +12,7 @@ var graph;
 document.addEventListener("DOMContentLoaded", function() {
   localStorage.clear();
   loadScene("scene_dame");
-  parseGraph();
+  //parseGraph();
 });
 
 // serve up the appropriate scene by either pulling it from local storage or fetching from the appropriate URL
