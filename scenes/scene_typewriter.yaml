@@ -3,7 +3,7 @@ title: Typewriter Alley
 visited: false
 scene_type: Core
 lead_ins: 
-  - <input id='scene_dame' type='button' value='A Dame Comes into Your Office' onclick='loadScene(id);' />"
+  - <input id='scene_dame' type='button' value='A Dame Comes into Your Office' onclick='loadScene(id);' />
   - The Order of Argent Light
   - The Alegria
 lead_outs: 

@@ -6,13 +6,13 @@ mermaid.initialize({
 
 var sceneJSON; 
 var currentSceneName;
-var graph;
+var graphJSON;
 
 // on start / refresh, clear local vars and load the starting scene
 document.addEventListener("DOMContentLoaded", function() {
   localStorage.clear();
   loadScene("scene_dame");
-  parseGraph();
+  loadGraph();
 });
 
 // serve up the appropriate scene by either pulling it from local storage or fetching from the appropriate URL
@@ -101,18 +101,42 @@ $(document).on("click", "input[name='clue']", function () {
 
 // When you click the checkbox for visited, have this update the graph and the JSON
 $(document).on("click", "input[name='visited']", function () {
+  console.log("current scene name is: " + currentSceneName);
+  console.log("clicked input for visited");
+  // update the scene JSON to reflect that location has been visited
   var checked = $(this).prop('checked');
   sceneJSON.visited = checked; 
   // after this is done, should update the JSON file
   localStorage.setItem(currentSceneName, JSON.stringify(sceneJSON));
 
-  
+  // update the graph JSON to indicate that the location has been visited 
+  if (checked) {
+    console.log("Pushing to JSON: " + "class " + currentSceneName + " completed;");
+    graphJSON.graph.push("class " + currentSceneName + " completed;");
+    // otherwise go through and remove the indication that the scene has been completed
+  } else {
+    var tag = "class " + currentSceneName + " completed;";
+    graphJSON.graph.forEach(function(element) {
+      if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
+        graphJSON = graphJSON.splice(graphJSON.indexOf(element));
+        console.log("removing element from JSON");
+      } 
+    }); 
+  }
+  //save the current graph data then redisplay graph
+  console.log("storing graph JSON locally");
+  localStorage.setItem("graphData", JSON.stringify(graphJSON));
+  loadGraph();
 });
 
 
 
-function parseGraph() {
-  var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/graph.json";
+function loadGraph() {
+  console.log("reloading graph");
+  // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
+  if (localStorage.getItem("graphData") === null) {
+    console.log("Didn't find graph in local storage");
+    var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/graph.json";
   // use AJAX to fetch the appropriate JSON data
     $.ajax({
       url: url,
@@ -121,17 +145,26 @@ function parseGraph() {
         console.log('JSON FAILED for data');
       },
       success:function(results){
+        graphJSON = results; // record the results of the json query and save that to a variable
         var graphDefinition = "";
         results.graph.forEach(function(element) {
           graphDefinition = graphDefinition + element + "\n"; 
         }); 
-        renderGraph(graphDefinition);
+        parseGraph(graphDefinition);
       }
   });
+  } else {
+    graphJSON = JSON.parse(localStorage.getItem("graphData"));
+    var graphDefinition = "";
+    graphJSON.graph.forEach(function(element) {
+      graphDefinition = graphDefinition + element + "\n"; 
+    }); 
+    console.log(graphDefinition);
+    parseGraph(graphDefinition);
+  }
 }
 
-function renderGraph(graphDefinition) {
-  // Example of using the API
+function parseGraph(graphDefinition) {
   var element = document.querySelector("#graphInfo");
 
   var insertSvg = function(svgCode, bindFunctions){
