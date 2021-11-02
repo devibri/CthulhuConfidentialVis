@@ -15,6 +15,13 @@ text:
   - If Dex asks why she’s chosen him, she says she’s asked around. Word on the street has it that Dex doesn’t back down and can’t be bribed to drop a case once he’s promised to see it to the end.
   - On this note, or at another suitable moment, she asks him to light her cigarette.
   - "\"Will you see this to the end, Dex?\""
+  - challenge: 
+    - Keeping it Professional with Margaret
+    - type: cool
+    - advance: "<strong>Advance 4+:</strong> You can see why a hundred guys would fall in love with a woman this glamorous and smart. Fortunately for you, you’re not one of those guys. Gain Edge 1, \"Self-Possessed.\""
+    - hold: "<strong>Hold 2-3:</strong> You can’t deny that Margaret has something special about her. But you’re not about to go all goo-goo eyed at the first sight of her."
+    - setback: "<strong>Setback 1 or less:</strong> You fall for her, hard and sudden. Gain Problem 5, \"Smitten with Margaret.\""
+    - extra_problem: "<strong>Extra Problem: Gain Problem 6, \"Sourpuss.\""
   - "A player holding the Problem card \"Lonely\" can choose to skip this Challenge by trading it for the Problem card \"Smitten with Margaret.\""
   - "Margaret wants to learn what happened to Helen without exposing her father Roscoe to further humiliation. So the story she tells omits some details. Her opening explanation goes like this:"
   - clue: 

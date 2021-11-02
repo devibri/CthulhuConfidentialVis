@@ -46,3 +46,28 @@ svg {
   transform: scale(.5);
   margin-top: -400;
 }
+
+.svg-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* aspect ratio */
+  vertical-align: top;
+  overflow: hidden;
+}
+.svg-content-responsive {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+
+svg .rect {
+  fill: gold;
+  stroke: steelblue;
+  stroke-width: 5px;
+}
+
+$('#container').html(graphDefinition).removeAttr('data-processed');
+mermaid.init(undefined, $('#container'));
+$('#container').width($('#container svg').css('max-width'));

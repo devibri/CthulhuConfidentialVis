@@ -198,3 +198,6 @@ $(document).on("click", "g[class='nodes'] g[class='node completed']", function (
   loadScene(id); 
 });
 
+$('#container').html(graphDefinition).removeAttr('data-processed');
+mermaid.init(undefined, $('#container'));
+$('#container').width($('#container svg').css('max-width'));
