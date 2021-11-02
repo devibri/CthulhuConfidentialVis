@@ -28,11 +28,6 @@ li {
   display: table;
   clear: both;
 }
-/*
-.mermaid {
-	height:50% !important; 
-	
-}*/
 
 .hangingindent {
   padding-left: 22px ;
@@ -67,7 +62,11 @@ svg .rect {
   stroke: steelblue;
   stroke-width: 5px;
 }
-
-$('#container').html(graphDefinition).removeAttr('data-processed');
-mermaid.init(undefined, $('#container'));
-$('#container').width($('#container svg').css('max-width'));
+.challenge {
+  width: 500px;
+  /*border: solid red 2px;*/
+  background-color: black;
+  color: white;
+  margin-left: 20px;
+  padding: 10px;
+}

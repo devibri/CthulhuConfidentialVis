@@ -79,6 +79,19 @@ function parseScene(result) {
     } else {
       sceneInfo.insertAdjacentHTML( 'beforeend', "<p class='hangingindent'><input type='checkbox' name='clue'> " + element.clue[0] + "</p>");
     }
+  } else if (element.challenge !== undefined) {
+    var challengeHTML = "<div class='challenge'>";
+    challengeHTML = challengeHTML + "<p><strong> " + element.challenge[0] + "</strong></p>";
+    challengeHTML = challengeHTML + "<p><em>" + element.challenge[1].type + "</em></p>";
+    challengeHTML = challengeHTML + "<p>" + element.challenge[2].advance + "</p>";
+    challengeHTML = challengeHTML + "<p>" + element.challenge[3].hold + "</p>";
+    challengeHTML = challengeHTML + "<p>" + element.challenge[4].setback + "</p>";
+    if (element.challenge[5] !== undefined) {
+      challengeHTML = challengeHTML + "<p>" + element.challenge[5].extra_problem + "</p>";
+    }
+    challengeHTML = challengeHTML + "</div>";
+    sceneInfo.insertAdjacentHTML( 'beforeend', challengeHTML);
+  
   } else {
     sceneInfo.insertAdjacentHTML( 'beforeend', "<p>" + element + " </p>");
   }
