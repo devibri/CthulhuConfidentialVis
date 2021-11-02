@@ -83,9 +83,9 @@ function parseScene(result) {
     var challengeHTML = "<div class='challenge'>";
     challengeHTML = challengeHTML + "<p><strong> " + element.challenge[0] + "</strong> " + "(<em>" + element.challenge[1].type + "</em>)</p>";
     // challengeHTML = challengeHTML + "<p><em>" + element.challenge[1].type + "</em></p>";
-    challengeHTML = challengeHTML + "<p>" + element.challenge[2].advance + "</p>";
-    challengeHTML = challengeHTML + "<p>" + element.challenge[3].hold + "</p>";
-    challengeHTML = challengeHTML + "<p>" + element.challenge[4].setback + "</p>";
+    challengeHTML = challengeHTML + "<p class='hangingindent'>" + element.challenge[2].advance + "</p>";
+    challengeHTML = challengeHTML + "<p class='hangingindent'>" + element.challenge[3].hold + "</p>";
+    challengeHTML = challengeHTML + "<p class='hangingindent'>" + element.challenge[4].setback + "</p>";
     if (element.challenge[5] !== undefined) {
       challengeHTML = challengeHTML + "<p>" + element.challenge[5].extra_problem + "</p>";
     }

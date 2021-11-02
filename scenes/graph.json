@@ -55,6 +55,6 @@
       "click scene_typewriter loadscene",
       "class scene_dame completed;",
       "classDef completed fill:#ffffff,stroke:#f8f8f8,stroke-width:4px;",
-      "classDef default fill:##2c2c34,stroke:#9b9c9f,stroke-width:2px;"
+      "classDef default fill:#2c2c34,stroke:#9b9c9f,stroke-width:2px;"
    ]
 }
