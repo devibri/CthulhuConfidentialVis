@@ -3,9 +3,9 @@
    "visited": true,
    "scene_type": "Opener",
    "lead_outs": [
-      "The Girl with Death in her Eyes",
+      "<input id='scene_girl' type='button' value='The Girl with Death in her Eyes' onclick='loadScene(id);' />",
       "<input id='scene_typewriter' type='button' value='Typewriter Alley' onclick='loadScene(id);' />",
-      "The Order of Argent Light"
+      "<input id='scene_argent' type='button' value='The Order of Argent Light' onclick='loadScene(id);' />"
    ],
    "text": [
       "The action begins in the dingy Bunker Hill office of Dex Raymond's one-man private detective agency.",
