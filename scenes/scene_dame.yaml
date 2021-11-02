@@ -3,9 +3,9 @@ title: A Dame Comes Into Your Office
 visited: true
 scene_type: Opener
 lead_outs: 
-  - The Girl with Death in her Eyes
+  - "<input id='scene_girl' type='button' value='The Girl with Death in her Eyes' onclick='loadScene(id);' />"
   - "<input id='scene_typewriter' type='button' value='Typewriter Alley' onclick='loadScene(id);' />"
-  - The Order of Argent Light
+  - "<input id='scene_argent' type='button' value='The Order of Argent Light' onclick='loadScene(id);' />"
 text: 
   - The action begins in the dingy Bunker Hill office of Dex Raymond's one-man private detective agency.
   - "Ask the player to select one of the following opening Problems. These appear as the first four Problem cards in the set that accompanies this scenario, as found on p. 142: \"What Killed the Cat,\" \"Lonely,\" \"Broke,\" and \"Vice Hound.\" Let the player read the text of all four cards before choosing."
