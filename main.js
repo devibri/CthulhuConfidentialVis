@@ -165,6 +165,7 @@ function loadGraph() {
 }
 
 function parseGraph(graphDefinition) {
+  $('#graphInfo').empty();
   var element = document.querySelector("#graphInfo");
 
   var insertSvg = function(svgCode, bindFunctions){
