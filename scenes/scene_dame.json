@@ -1,12 +1,10 @@
 {
-   "title": "A Dame Comes Into Your Office",
-   "visited": true,
-   "scene_type": "Opener",
    "lead_outs": [
       "The Girl with Death in her Eyes",
       "<input id='scene_typewriter' type='button' value='Typewriter Alley' onclick='loadScene(id);' />",
       "The Order of Argent Light"
    ],
+   "scene_type": "Opener",
    "text": [
       "The action begins in the dingy Bunker Hill office of Dex Raymond's one-man private detective agency.",
       "Ask the player to select one of the following opening Problems. These appear as the first four Problem cards in the set that accompanies this scenario, as found on p. 142: \"What Killed the Cat,\" \"Lonely,\" \"Broke,\" and \"Vice Hound.\" Let the player read the text of all four cards before choosing.",
@@ -115,6 +113,9 @@
             "(Core, \"Order of the Argent Light\") When their mother became ill, Helen started talking nonsense about auras and Secret Masters and pyramids. Margaret doesn’t know who dragged her into that nonsense, but she does remember repeatedly hearing the phrase \"Argent Light.\"",
             {
                "known": false
+            },
+            {
+               "goes_to": "scene_order"
             }
          ]
       },
@@ -131,6 +132,9 @@
             "(Core, \"Typewriter Alley\") The only man Margaret can name is Marshall Daly, a screenwriter at Capitol Pictures. Margaret only met him a few times. He struck her as handsome and angry, and probably the jealous type.",
             {
                "known": false
+            },
+            {
+               "goes_to": "scene_typewriter"
             }
          ]
       },
@@ -159,5 +163,7 @@
          ]
       },
       "If asked, Margaret arranges to deliver the camisole Helen was wearing when she reappeared. Asking his scientific source Virginia Ashbury to run a Forensics reveals that the blood doesn’t match Helen’s blood type. To make the match, Dex can get Helen’s medical records from her sister."
-   ]
+   ],
+   "title": "A Dame Comes Into Your Office",
+   "visited": true
 }

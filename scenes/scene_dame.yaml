@@ -4,7 +4,7 @@ visited: true
 scene_type: Opener
 lead_outs: 
   - The Girl with Death in her Eyes
-  - "<input id='scene_typewriter' type='button' value='Typewriter Alley' onclick='loadScene(id);' />",
+  - "<input id='scene_typewriter' type='button' value='Typewriter Alley' onclick='loadScene(id);' />"
   - The Order of Argent Light
 text: 
   - The action begins in the dingy Bunker Hill office of Dex Raymond's one-man private detective agency.
@@ -57,12 +57,14 @@ text:
   - clue: 
     - "(Core, \"Order of the Argent Light\") When their mother became ill, Helen started talking nonsense about auras and Secret Masters and pyramids. Margaret doesn’t know who dragged her into that nonsense, but she does remember repeatedly hearing the phrase \"Argent Light.\""
     - known: false
+    - goes_to: scene_order
   - clue: 
     - Helen seemed to be juggling several men.
     - known: false
   - clue: 
     - "(Core, \"Typewriter Alley\") The only man Margaret can name is Marshall Daly, a screenwriter at Capitol Pictures. Margaret only met him a few times. He struck her as handsome and angry, and probably the jealous type."
     - known: false
+    - goes_to: scene_typewriter
   - clue: 
     - The last time Margaret saw him was... oh, it must have been five weeks ago. He came to the house asking after Helen. This was back when she was still missing. Trying to see if he might be involved, she stayed tight-lipped.
     - known: false

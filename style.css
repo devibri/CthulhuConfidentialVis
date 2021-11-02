@@ -43,6 +43,6 @@ svg {
   margin-left: -190;
   height: 1800px;
   width: 1200px;
-  transform: scale(.65);
-
+  transform: scale(.5);
+  margin-top: -400;
 }

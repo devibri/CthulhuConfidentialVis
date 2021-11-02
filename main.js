@@ -166,4 +166,18 @@ function parseGraph(graphDefinition) {
   mermaid.mermaidAPI.render('graphInfo', graphDefinition, insertSvg);
 }
 
+// When you click the node, load the appropriate page
+$(document).on("click", "g[class='nodes'] g[class='node']", function () {
+  var id = $(this).attr('id');
+  var text = $(this).find('foreignObject div').html();
+  loadScene(id); 
+});
+
+
+// When you click the node, load the appropriate page
+$(document).on("click", "g[class='nodes'] g[class='node completed']", function () {
+  var id = $(this).attr('id');
+  var text = $(this).find('foreignObject div').html();
+  loadScene(id); 
+});
 
