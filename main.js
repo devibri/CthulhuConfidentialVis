@@ -81,8 +81,8 @@ function parseScene(result) {
     }
   } else if (element.challenge !== undefined) {
     var challengeHTML = "<div class='challenge'>";
-    challengeHTML = challengeHTML + "<p><strong> " + element.challenge[0] + "</strong></p>";
-    challengeHTML = challengeHTML + "<p><em>" + element.challenge[1].type + "</em></p>";
+    challengeHTML = challengeHTML + "<p><strong> " + element.challenge[0] + "</strong> " + "(<em>" + element.challenge[1].type + "</em>)</p>";
+    // challengeHTML = challengeHTML + "<p><em>" + element.challenge[1].type + "</em></p>";
     challengeHTML = challengeHTML + "<p>" + element.challenge[2].advance + "</p>";
     challengeHTML = challengeHTML + "<p>" + element.challenge[3].hold + "</p>";
     challengeHTML = challengeHTML + "<p>" + element.challenge[4].setback + "</p>";
