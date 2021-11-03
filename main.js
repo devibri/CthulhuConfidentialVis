@@ -56,7 +56,7 @@ function parseScene(result) {
   if (result.lead_ins != null) {
     sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Ins: ");
     result.lead_ins.forEach(function(element) {
-      sceneInfo.insertAdjacentHTML( 'beforeend', " | " + element);
+      sceneInfo.insertAdjacentHTML( 'beforeend', element + "    ");
     });
   }
   sceneInfo.insertAdjacentHTML( 'beforeend',"<br>");
@@ -64,7 +64,7 @@ function parseScene(result) {
   if (result.lead_outs != null) {
     sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Outs: ");
     result.lead_outs.forEach(function(element) {
-      sceneInfo.insertAdjacentHTML( 'beforeend', " | " + element);
+      sceneInfo.insertAdjacentHTML( 'beforeend', element + "    ");
     });
   }
  
