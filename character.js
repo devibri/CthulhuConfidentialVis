@@ -2,6 +2,7 @@ dragula([document.querySelector('#list3'), document.querySelector('#list'), docu
 
 
 window.onload = function () {
+	localStorage.clear();
   loadProblems();
 }
 
@@ -28,12 +29,15 @@ function parseProblems(results) {
 	$('#problems2').empty();
 	// iterate through the JSON list of problems and display them
 	for (var i = 0; i < results.length; i++) {
-		if (results[i].obtained = false) {
+		console.log(results[i])
+		// if (results[i].obtained == false) {
+			console.log(results[i].obtained);
 			if (i % 2 == 0) {
-				problemsList1.insertAdjacentHTML( 'beforeend', "<div class='card'><h1>" + results[i].id + " </h1><p>" + results[i].name + " (<em>" + results[i].type + "</em>)</p><p>" + results[i].description + "</p></div>");
+				console.log(results[i].obtained);
+				problemsList1.insertAdjacentHTML( 'beforeend', "<div class='card'><h1>" + results[i].id + " </h1><p>" + results[i].name + " (<em>" + results[i].type + "</em>)</p><p>" + results[i].description + results[i].obtained + "</p></div>");
 			} else {
 				problemsList2.insertAdjacentHTML( 'beforeend', "<div class='card'><h1>" + results[i].id + " </h1><p>" + results[i].name + " (<em>" + results[i].type + "</em>)</p><p>" + results[i].description + "</p></div>");
 			}
 		}
-	}
+	// }
 }
