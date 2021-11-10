@@ -257,8 +257,8 @@ button:hover {
     margin: 10px;
 }
 
-
 #list-container3{
+  display:table;
     background-color: gainsboro;
     cursor: default;
     overflow-y: auto;
