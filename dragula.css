@@ -39,7 +39,7 @@ html, body {
   box-sizing: inherit;
 }
 
-body, input, button {
+body, input {
   font-family: Georgia, Helvetica;
   font-size: 17px;
   color: black;
@@ -79,14 +79,14 @@ h3 div {
   background-color: #ff4020;
   border-bottom: 5px solid #c00;
 }
-
+/*
 a {
   font-weight: bold;
 }
 a,
 a:hover {
   color: #ecf0f1;
-}
+}*/
 
 pre {
   white-space: pre-wrap;
@@ -156,7 +156,7 @@ input {
   display: block;
   width: 100%;
 }
-
+/*
 button {
   background-color: #ecf0f1;
   color: #942A57;
@@ -170,7 +170,7 @@ button {
 button:hover {
   background-color: #e74c3c;
   color: #ecf0f1;
-}
+}*/
 
 .gh-fork {
   position: fixed;

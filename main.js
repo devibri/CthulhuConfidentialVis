@@ -8,12 +8,30 @@ var sceneJSON;
 var currentSceneName;
 var graphJSON;
 
-// on start / refresh, clear local vars and load the starting scene
-document.addEventListener("DOMContentLoaded", function() {
+// // on start / refresh, clear local vars and load the starting scene
+// document.addEventListener("DOMContentLoaded", function() {
+
+//localStorage.clear();
+//   // loadScene("scene_dame");
+//   loadGraph();
+// });
+function reset() {
   localStorage.clear();
-  loadScene("scene_dame");
+  loadSceneGraph();
+}
+
+window.onload = function () {
+  loadSceneGraph();
+}
+
+function loadSceneGraph() {
+  if (localStorage.getItem("scene") === null) {
+    loadScene("scene_dame");
+  } else {
+    loadScene(localStorage.getItem("scene"));
+  }
   loadGraph();
-});
+}
 
 // serve up the appropriate scene by either pulling it from local storage or fetching from the appropriate URL
 var loadScene = function(scene_name) {
@@ -41,6 +59,8 @@ var loadScene = function(scene_name) {
 
 // takes the scene you're trying to load and renders it 
 function parseScene(result) {
+  //save the scene name to local storage
+  localStorage.setItem("scene", currentSceneName);
   /* now go through the JSON and serve up the appropriate webpage based on that */
   var sceneInfo = document.getElementById("sceneInfo");
   // clear the current thing in the div
