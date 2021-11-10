@@ -3,12 +3,21 @@
 		"id": "Problem 1",
 		"name": "What Killed the Cat",
 		"type": "Continuity", 
-		"description": "Even when you shouldn’t look, or have no reason to want to know something, you can’t not look, can’t stop probing. You worry problems like a terrier worries a rat."
+		"description": "Even when you shouldn’t look, or have no reason to want to know something, you can’t not look, can’t stop probing. You worry problems like a terrier worries a rat.",
+		"obtained": false
 	}, 
 	{ 
 		"id": "Problem 2",
 		"name": "Lonely",
 		"type": "Continuity", 
-		"description": "You should have gotten over her by now. She’s gone, and gone for good. It’s time you moved on, found someone new. Maybe someone who won’t play you for a sap this time. Oh hell, who are you kidding?"
+		"description": "You should have gotten over her by now. She’s gone, and gone for good. It’s time you moved on, found someone new. Maybe someone who won’t play you for a sap this time. Oh hell, who are you kidding?",
+		"obtained": false
+	},
+	{ 
+		"id": "Problem 3",
+		"name": "Broke",
+		"type": "Continuity", 
+		"description": "Nobody could ever accuse you of loving money. You wouldn’t be an honest private eye if that were the case. But a man needs to eat, and keep the lights on. And you’re on the verge of being evicted from both your apartment and your office.",
+		"obtained": false
 	}
 ]
