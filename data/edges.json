@@ -1,0 +1,23 @@
+[
+	{
+		"id": "Edge 1",
+		"obtained": false,
+		"name": "Self-Possessed",
+		"type": "", 
+		"description": "<em>A show of self-control gives you the confidence you'll need if this case gets hairy.</em><br>Spend for an extra die on Cool or Stability, or for a +2 bonus to any other General/ Mental test."
+	}, 
+	{ 
+		"id": "Edge 2",
+		"obtained": false,
+		"name": "Quick Reactions",
+		"type": "", 
+		"description": "Spend for an extra die on any Athletics, Driving or Fighting test."
+	},
+	{ 
+		"id": "Edge 3",
+		"obtained": false,
+		"name": "Marshall Offers Aid",
+		"type": "", 
+		"description": "Marshall Daly has agreed to help you, even if it’s dangerous, if it means getting back whoever hurt Helen."
+	}
+]
