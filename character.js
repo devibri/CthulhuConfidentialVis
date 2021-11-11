@@ -115,4 +115,6 @@ drake.on('drop', function (el, target, source, sibling) {
 			}
 		});
 	}
+	localStorage.setItem("problemsData", JSON.stringify(problemsJSON));
+	localStorage.setItem("edgesData", JSON.stringify(edgesJSON));
 });
