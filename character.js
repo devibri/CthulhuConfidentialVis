@@ -4,26 +4,34 @@ var problemsJSON;
 var edgesJSON;
 
 window.onload = function () {
-	//localStorage.clear();
 	$('#character-list').empty();
 	loadProblems();
 	loadEdges();
 }
 
 function loadProblems() {
-	var url = "https://www.devi-a.com/CthulhuConfidentialVis/data/problems.json";
-    // use AJAX to fetch the appropriate JSON data
-    $.ajax({
-      url: url,
-      dataType: 'json',
-      error: function(){
-        console.log('JSON FAILED for data');
-      },
-      success:function(results){
-      	problemsJSON = results;
-        parseProblems(results);
-      } 
-    }) 
+	if (localStorage.getItem("problemsData") === null) {
+		console.log("no problems found");
+		var url = "https://www.devi-a.com/CthulhuConfidentialVis/data/problems.json";
+    	// use AJAX to fetch the appropriate JSON data
+	    $.ajax({
+	      url: url,
+	      dataType: 'json',
+	      error: function(){
+	        console.log('JSON FAILED for data');
+	      },
+	      success:function(results){
+	      	problemsJSON = results;
+	        parseProblems(results);
+	      } 
+	    }) 
+	} else {
+		console.log("problems found");
+		console.log(JSON.parse(localStorage.getItem("problemsData")));
+		var results = JSON.parse(localStorage.getItem("problemsData"));
+		parseProblems(results);
+	}
+	
 }
 
 function parseProblems(results) {
@@ -82,6 +90,7 @@ function generateString(result, classType) {
 
 // on dropping a card, change the JSON to reflect that that card is now given to the player / taken from the player
 drake.on('drop', function (el, target, source, sibling) {
+	console.log(problemsJSON);
 	// if moving out of the character list, remove the "obtained" bool from the JSON
 	if ((target.id == "edges-list" && source.id == "character-list") || (target.id == "problems-list" && source.id == "character-list")) {
 		problemsJSON.forEach(function(element) {
@@ -118,3 +127,10 @@ drake.on('drop', function (el, target, source, sibling) {
 	localStorage.setItem("problemsData", JSON.stringify(problemsJSON));
 	localStorage.setItem("edgesData", JSON.stringify(edgesJSON));
 });
+
+function reset() {
+	localStorage.clear();
+	$('#character-list').empty();
+	loadProblems();
+	loadEdges();
+}
