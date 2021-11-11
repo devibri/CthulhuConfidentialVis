@@ -1,5 +1,7 @@
-dragula([document.querySelector('#character-list'), document.querySelector('#problems-list'), document.querySelector('#edges-list')]);
+var drake = dragula([document.querySelector('#character-list'), document.querySelector('#problems-list'), document.querySelector('#edges-list')]);
 
+var problemsJSON;
+var edgesJSON;
 
 window.onload = function () {
 	//localStorage.clear();
@@ -18,6 +20,7 @@ function loadProblems() {
         console.log('JSON FAILED for data');
       },
       success:function(results){
+      	problemsJSON = results;
         parseProblems(results);
       } 
     }) 
@@ -50,6 +53,7 @@ function loadEdges() {
         console.log('JSON FAILED for data');
       },
       success:function(results){
+      	edgesJSON = results;
         parseEdges(results);
       } 
     }) 
@@ -75,3 +79,40 @@ function generateString(result, classType) {
 	var string = "<div class='" + classType + "'><h1>" + result.id + "  |  <strong>" + result.name + "</strong> " + result.type + "</h1><p>" + result.description + "</p></div>"
 	return string;
 }
+
+// on dropping a card, change the JSON to reflect that that card is now given to the player / taken from the player
+drake.on('drop', function (el, target, source, sibling) {
+	// if moving out of the character list, remove the "obtained" bool from the JSON
+	if ((target.id == "edges-list" && source.id == "character-list") || (target.id == "problems-list" && source.id == "character-list")) {
+		problemsJSON.forEach(function(element) {
+		//console.log("id is: " + element.id);
+			if (el.innerHTML.includes(element.id)) {
+				element.obtained = false;
+				console.log(element);
+			}
+		});
+		edgesJSON.forEach(function(element) {
+		//console.log("id is: " + element.id);
+			if (el.innerHTML.includes(element.id)) {
+				element.obtained = false;
+				console.log(element);
+			}
+		});
+	}
+
+	// if adding to the character list, mark as obtained
+	if (target.id == "character-list") {
+		problemsJSON.forEach(function(element) {
+			if (el.innerHTML.includes(element.id)) {
+				element.obtained = true;
+				console.log(element);
+			}
+		});
+		edgesJSON.forEach(function(element) {
+			if (el.innerHTML.includes(element.id)) {
+				element.obtained = true;
+				console.log(element);
+			}
+		});
+	}
+});
