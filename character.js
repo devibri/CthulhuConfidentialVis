@@ -26,10 +26,8 @@ function loadProblems() {
 	      } 
 	    }) 
 	} else {
-		console.log("problems found");
-		console.log(JSON.parse(localStorage.getItem("problemsData")));
-		var results = JSON.parse(localStorage.getItem("problemsData"));
-		parseProblems(results);
+		problemsJSON = JSON.parse(localStorage.getItem("problemsData"));
+		parseProblems(problemsJSON);
 	}
 	
 }
@@ -52,19 +50,24 @@ function parseProblems(results) {
 }
 
 function loadEdges() {
-	var url = "https://www.devi-a.com/CthulhuConfidentialVis/data/edges.json";
-    // use AJAX to fetch the appropriate JSON data
-    $.ajax({
-      url: url,
-      dataType: 'json',
-      error: function(){
-        console.log('JSON FAILED for data');
-      },
-      success:function(results){
-      	edgesJSON = results;
-        parseEdges(results);
-      } 
-    }) 
+	if (localStorage.getItem("problemsData") === null) {
+		var url = "https://www.devi-a.com/CthulhuConfidentialVis/data/edges.json";
+	    // use AJAX to fetch the appropriate JSON data
+	    $.ajax({
+	      url: url,
+	      dataType: 'json',
+	      error: function(){
+	        console.log('JSON FAILED for data');
+	      },
+	      success:function(results){
+	      	edgesJSON = results;
+	        parseEdges(results);
+	      } 
+	    }) 
+	} else {
+		edgesJSON = JSON.parse(localStorage.getItem("edgesData"));
+		parseEdges(edgesJSON);
+	}
 }
 
 function parseEdges(results) {
