@@ -233,32 +233,31 @@ button:hover {
   background-color: rgba(0, 0, 0, 0.4);
   cursor: move;
 }
-#list-container{
+#list-container-problems {
     background-color: gainsboro;
     cursor: default;
     overflow-y: auto;
     height: 250px;
     padding: 20px;
 }
-#list{
+#problems-list{
     padding: 10px;
     margin: 10px;
 }
 
-#list-container2{
+#list-container-edges{
     background-color: gainsboro;
     cursor: default;
     overflow-y: auto;
     height: 250px;
     padding: 20px;
 }
-#list2{
+#edges-list{
     padding: 10px;
     margin: 10px;
 }
 
-#list-container3{
-  display:table;
+#list-container-character{
     background-color: gainsboro;
     cursor: default;
     overflow-y: auto;
@@ -266,7 +265,8 @@ button:hover {
     padding: 10px;
     width: 95%;
 }
-#list3{
+
+#character-list{
     padding: 10px;
     margin: 10px;
 }
@@ -276,8 +276,14 @@ button:hover {
   margin: 10px;
 }
 
-.card {
+.edge-card {
   background-color: white;
+  margin: 10px;
+  padding: 10px;
+}
+
+.problem-card {
+  background-color: darkgrey;
   margin: 10px;
   padding: 10px;
 }
