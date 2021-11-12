@@ -1,0 +1,26 @@
+[
+	{
+		"id": "margaret_deaken",
+		"name": "Margaret Deaken",
+		"title": "The Client",
+		"met": false,
+		"known": false,
+		"description": "29, sharp-tongued, alluring. She’s inherited her father’s nose for business along with the responsibilities he’s shucked aside. She hires our protagonist, private investigator Dex Raymond, to work the case."
+	}, 
+	{ 
+		"id": "helen_deaken",
+		"name": "Helen Deaken",
+		"title": "Margaret's sister",
+		"met": false,
+		"known": false, 
+		"description": "25, a ruined beauty. Heiress to a real estate fortune, her mind shattered by an unknown event."
+	},
+	{ 
+		"id": "whitey_alexander",
+		"name": "Whitey Alexander",
+		"title": "Casino owner",
+		"met": false,
+		"known": false,  
+		"description": "53, florid-faced, ham-fisted. Casino owner and mid-level rackets figure who pays his tribute money to Guy McAfee. Kept Helen Deakin as a mistress, using her father’s gambling debts as a point of leverage over her."
+	}
+]

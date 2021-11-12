@@ -4,8 +4,8 @@ mermaid.initialize({
 });
 
 
-var sceneJSON; 
-var currentSceneName;
+var characterJSON; 
+var currentCharacterName;
 var graphJSON;
 
 // // on start / refresh, clear local vars and load the starting scene
@@ -17,28 +17,28 @@ var graphJSON;
 // });
 function reset() {
   localStorage.clear();
-  loadSceneGraph();
+  loadCharacterGraph();
 }
 
 window.onload = function () {
-  loadSceneGraph();
+  loadCharacterGraph();
 }
 
-function loadSceneGraph() {
-  if (localStorage.getItem("scene") === null) {
-    loadScene("scene_dame");
+function loadCharacterGraph() {
+  if (localStorage.getItem("currentCharacter") === null) {
+    loadCharacter("margaret_deaken");
   } else {
-    loadScene(localStorage.getItem("scene"));
+    loadCharacter(localStorage.getItem("currentCharacter"));
   }
   loadGraph();
 }
 
 // serve up the appropriate scene by either pulling it from local storage or fetching from the appropriate URL
-var loadScene = function(scene_name) {
-  currentSceneName = scene_name.toLowerCase();
+var loadCharacter = function(character_name) {
+  currentCharacterName = character_name.toLowerCase();
   // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
-  if (localStorage.getItem(currentSceneName) === null) {
-    var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/" + currentSceneName + ".json";
+  if (localStorage.getItem("characterInfo") === null) {
+    var url = "https://www.devi-a.com/CthulhuConfidentialVis/data/character-info.json";
     // use AJAX to fetch the appropriate JSON data
     $.ajax({
       url: url,
@@ -47,139 +47,102 @@ var loadScene = function(scene_name) {
         console.log('JSON FAILED for data');
       },
       success:function(results){
-        sceneJSON = results; // record the results of the json query and save that to a variable
-        parseScene(results);
+        characterJSON = results; // record the results of the json query and save that to a variable
+        parseCharacter(results, character_name);
       } 
     }) 
  } else {
-  sceneJSON = JSON.parse(localStorage.getItem(currentSceneName));
-  parseScene(sceneJSON);
+  characterJSON = JSON.parse(localStorage.getItem("characterInfo"));
+  parseCharacter(characterJSON, character_name);
 }
 }
 
 // takes the scene you're trying to load and renders it 
-function parseScene(result) {
+function parseCharacter(result, name) {
   //save the scene name to local storage
-  localStorage.setItem("scene", currentSceneName);
+  localStorage.setItem("currentCharacter", name);
   /* now go through the JSON and serve up the appropriate webpage based on that */
-  var sceneInfo = document.getElementById("sceneInfo");
+  var characterInfo = document.getElementById("characterInfo");
   // clear the current thing in the div
-  $('#sceneInfo').empty();
+  $('#characterInfo').empty();
   // print out the title scene and type
-  sceneInfo.insertAdjacentHTML( 'beforeend', "<h1>" + result.title + " </h1>");
-  if (result.visited) {
-     sceneInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='visited' checked>");
+  characterInfo.insertAdjacentHTML( 'beforeend', "<h1>" + result.name + " </h1>");
+  characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + result.title + " </p>");
+  if (result.met) {
+     characterInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='met' checked>");
   } else {
-    sceneInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='visited'>");
+    characterInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='met'>");
   }
-  sceneInfo.insertAdjacentHTML( 'beforeend', "<p><em>Scene Type: " + result.scene_type + " </em></p>");
-  if (result.lead_ins != null) {
-    sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Ins: ");
-    result.lead_ins.forEach(function(element) {
-      sceneInfo.insertAdjacentHTML( 'beforeend', element + "    ");
-    });
-  }
-  sceneInfo.insertAdjacentHTML( 'beforeend',"<br>");
-  // print out and format a list of the lead outs
-  if (result.lead_outs != null) {
-    sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Outs: ");
-    result.lead_outs.forEach(function(element) {
-      sceneInfo.insertAdjacentHTML( 'beforeend', element + "    ");
-    });
-  }
- 
-  sceneInfo.insertAdjacentHTML( 'beforeend',"<hr>");
-  // print out list of text in the scene
-  result.text.forEach(function(element) {
-  if (element.clue !== undefined) {
-    // print out each individual clue and format with checkbox
-    // check if checkbox should be checked or not 
-    if (element.clue[1].known == true) {
-      sceneInfo.insertAdjacentHTML( 'beforeend', "<p class='hangingindent'><input type='checkbox' name='clue' checked>  " + element.clue[0] + "</p>");
-    } else {
-      sceneInfo.insertAdjacentHTML( 'beforeend', "<p class='hangingindent'><input type='checkbox' name='clue'> " + element.clue[0] + "</p>");
-    }
-  } else if (element.challenge !== undefined) {
-    var challengeHTML = "<div class='challenge'>";
-    challengeHTML = challengeHTML + "<p><strong> " + element.challenge[0] + "</strong> " + "(<em>" + element.challenge[1].type + "</em>)</p>";
-    // challengeHTML = challengeHTML + "<p><em>" + element.challenge[1].type + "</em></p>";
-    challengeHTML = challengeHTML + "<p class='hangingindent'>" + element.challenge[2].advance + "</p>";
-    challengeHTML = challengeHTML + "<p class='hangingindent'>" + element.challenge[3].hold + "</p>";
-    challengeHTML = challengeHTML + "<p class='hangingindent'>" + element.challenge[4].setback + "</p>";
-    if (element.challenge[5] !== undefined) {
-      challengeHTML = challengeHTML + "<p>" + element.challenge[5].extra_problem + "</p>";
-    }
-    challengeHTML = challengeHTML + "</div>";
-    sceneInfo.insertAdjacentHTML( 'beforeend', challengeHTML);
-  
+  if (result.known) {
+     characterInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='known' checked>");
   } else {
-    sceneInfo.insertAdjacentHTML( 'beforeend', "<p>" + element + " </p>");
+    characterInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='known'>");
   }
-  }); 
+  characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + result.description + "</p>");
 }
 
-// When you click the checkbox for a clue, have this update the result in the JSON
-$(document).on("click", "input[name='clue']", function () {
-  var checked = $(this).prop('checked');
-  var clueText = this.nextSibling.data.trim();
-  // Go through each clue and find the one that matches the checkbox, then change the data for that clue to be known/unknown
-  sceneJSON.text.forEach(function(element) {
-    if (element.clue !== undefined && clueText == element.clue[0]) {
-      element.clue[1].known = checked;
-    } 
-    // if you click on a lead to another area, update the flowchart to indicate this
-    if (element.clue !== undefined && clueText == element.clue[0] && element.clue[2] !== undefined) {
-      if (checked) {
-        var tag = currentSceneName + " --> " + element.clue[2].goes_to;
-        graphJSON.graph.forEach(function(element, index) {
-          if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
-            graphJSON.graph.splice(index, 1);
-          } 
-        }); 
-        var newTag = currentSceneName + " ==> " + element.clue[2].goes_to;
-        graphJSON.graph.push(newTag);
-        // otherwise go through and remove the indication that the scene has been completed
-      } 
-      //save the current graph data then redisplay graph
-      localStorage.setItem("graphData", JSON.stringify(graphJSON));
-      loadGraph();
-    }
-  }); 
-  // after this is done, should update the JSON file
-  localStorage.setItem(currentSceneName, JSON.stringify(sceneJSON));
-});
+// // When you click the checkbox for a clue, have this update the result in the JSON
+// $(document).on("click", "input[name='clue']", function () {
+//   var checked = $(this).prop('checked');
+//   var clueText = this.nextSibling.data.trim();
+//   // Go through each clue and find the one that matches the checkbox, then change the data for that clue to be known/unknown
+//   sceneJSON.text.forEach(function(element) {
+//     if (element.clue !== undefined && clueText == element.clue[0]) {
+//       element.clue[1].known = checked;
+//     } 
+//     // if you click on a lead to another area, update the flowchart to indicate this
+//     if (element.clue !== undefined && clueText == element.clue[0] && element.clue[2] !== undefined) {
+//       if (checked) {
+//         var tag = currentSceneName + " --> " + element.clue[2].goes_to;
+//         graphJSON.graph.forEach(function(element, index) {
+//           if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
+//             graphJSON.graph.splice(index, 1);
+//           } 
+//         }); 
+//         var newTag = currentSceneName + " ==> " + element.clue[2].goes_to;
+//         graphJSON.graph.push(newTag);
+//         // otherwise go through and remove the indication that the scene has been completed
+//       } 
+//       //save the current graph data then redisplay graph
+//       localStorage.setItem("graphData", JSON.stringify(graphJSON));
+//       loadGraph();
+//     }
+//   }); 
+//   // after this is done, should update the JSON file
+//   localStorage.setItem(currentSceneName, JSON.stringify(sceneJSON));
+// });
 
-// When you click the checkbox for visited, have this update the graph and the JSON
-$(document).on("click", "input[name='visited']", function () {
-  // update the scene JSON to reflect that location has been visited
-  var checked = $(this).prop('checked');
-  sceneJSON.visited = checked; 
-  // after this is done, should update the JSON file
-  localStorage.setItem(currentSceneName, JSON.stringify(sceneJSON));
+// // When you click the checkbox for visited, have this update the graph and the JSON
+// $(document).on("click", "input[name='visited']", function () {
+//   // update the scene JSON to reflect that location has been visited
+//   var checked = $(this).prop('checked');
+//   sceneJSON.visited = checked; 
+//   // after this is done, should update the JSON file
+//   localStorage.setItem(currentSceneName, JSON.stringify(sceneJSON));
 
-  // update the graph JSON to indicate that the location has been visited 
-  if (checked) {
-    graphJSON.graph.push("class " + currentSceneName + " completed;");
-    // otherwise go through and remove the indication that the scene has been completed
-  } else {
-    var tag = "class " + currentSceneName + " completed;";
-    graphJSON.graph.forEach(function(element, index) {
-      if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
-        graphJSON.graph.splice(index, 1);
-      } 
-    }); 
-  }
-  //save the current graph data then redisplay graph
-  localStorage.setItem("graphData", JSON.stringify(graphJSON));
-  loadGraph();
-});
+//   // update the graph JSON to indicate that the location has been visited 
+//   if (checked) {
+//     graphJSON.graph.push("class " + currentSceneName + " completed;");
+//     // otherwise go through and remove the indication that the scene has been completed
+//   } else {
+//     var tag = "class " + currentSceneName + " completed;";
+//     graphJSON.graph.forEach(function(element, index) {
+//       if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
+//         graphJSON.graph.splice(index, 1);
+//       } 
+//     }); 
+//   }
+//   //save the current graph data then redisplay graph
+//   localStorage.setItem("graphData", JSON.stringify(graphJSON));
+//   loadGraph();
+// });
 
 
 
 function loadGraph() {
   // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
   if (localStorage.getItem("graphData") === null) {
-    var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/graph.json";
+    var url = "https://www.devi-a.com/CthulhuConfidentialVis/data/character-graph.json";
   // use AJAX to fetch the appropriate JSON data
     $.ajax({
       url: url,
