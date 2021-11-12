@@ -8,13 +8,6 @@ var characterJSON;
 var currentCharacterName;
 var graphJSON;
 
-// // on start / refresh, clear local vars and load the starting scene
-// document.addEventListener("DOMContentLoaded", function() {
-
-//localStorage.clear();
-//   // loadScene("scene_dame");
-//   loadGraph();
-// });
 function reset() {
   localStorage.clear();
   loadCharacterGraph();
@@ -66,19 +59,25 @@ function parseCharacter(result, name) {
   // clear the current thing in the div
   $('#characterInfo').empty();
   // print out the title scene and type
-  characterInfo.insertAdjacentHTML( 'beforeend', "<h1>" + result.name + " </h1>");
-  characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + result.title + " </p>");
-  if (result.met) {
-     characterInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='met' checked>");
-  } else {
-    characterInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='met'>");
-  }
-  if (result.known) {
-     characterInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='known' checked>");
-  } else {
-    characterInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='known'>");
-  }
-  characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + result.description + "</p>");
+  console.log(result);
+  console.log(name);
+  result.forEach(function(character) {
+    if (character.id == name) {
+      characterInfo.insertAdjacentHTML( 'beforeend', "<h1>" + character.name + " </h1>");
+      characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + character.title + " </p>");
+      if (result.met) {
+         characterInfo.insertAdjacentHTML( 'beforeend', "<p>Met:  <input type='checkbox' name='met' checked></p>");
+      } else {
+        characterInfo.insertAdjacentHTML( 'beforeend', "<p>Met:  <input type='checkbox' name='met'></p>");
+      }
+      if (result.known) {
+         characterInfo.insertAdjacentHTML( 'beforeend', "<p>Known:  <input type='checkbox' name='known' checked></p>");
+      } else {
+        characterInfo.insertAdjacentHTML( 'beforeend', "<p>Known:  <input type='checkbox' name='known'></p>");
+      }
+      characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + character.description + "</p>");
+    }
+  });
 }
 
 // // When you click the checkbox for a clue, have this update the result in the JSON
