@@ -18,12 +18,12 @@ window.onload = function () {
 }
 
 function loadCharacterGraph() {
-  if (localStorage.getItem("currentCharacter") === null) {
-    loadCharacter("margaret_deaken");
-  } else {
-    loadCharacter(localStorage.getItem("currentCharacter"));
-  }
-  loadGraph();
+  // if (localStorage.getItem("currentCharacter") === null) {
+  //   loadCharacter("margaret_deaken");
+  // } else {
+  //   loadCharacter(localStorage.getItem("currentCharacter"));
+  // }
+  //loadGraph();
 }
 
 // serve up the appropriate scene by either pulling it from local storage or fetching from the appropriate URL
@@ -139,8 +139,10 @@ function parseCharacter(result, name) {
 
 
 function loadGraph() {
+  console.log("loading graph");
   // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
   if (localStorage.getItem("graphData") === null) {
+    console.log("graphdata is null");
     var url = "https://www.devi-a.com/CthulhuConfidentialVis/data/character-graph.json";
   // use AJAX to fetch the appropriate JSON data
     $.ajax({
@@ -169,6 +171,7 @@ function loadGraph() {
 }
 
 function parseGraph(graphDefinition) {
+  console.log("parsing graph");
   $('#graphInfo').empty();
   var element = document.querySelector("#graphInfo");
 
@@ -178,17 +181,17 @@ function parseGraph(graphDefinition) {
   mermaid.mermaidAPI.render('graphInfo', graphDefinition, insertSvg);
 }
 
-// When you click the node, load the appropriate page
-$(document).on("click", "g[class='nodes'] g[class='node']", function () {
-  var id = $(this).attr('id');
-  var text = $(this).find('foreignObject div').html();
-  loadScene(id); 
-});
+// // When you click the node, load the appropriate page
+// $(document).on("click", "g[class='nodes'] g[class='node']", function () {
+//   var id = $(this).attr('id');
+//   var text = $(this).find('foreignObject div').html();
+//   loadScene(id); 
+// });
 
 
-// When you click the node, load the appropriate page
-$(document).on("click", "g[class='nodes'] g[class='node completed']", function () {
-  var id = $(this).attr('id');
-  var text = $(this).find('foreignObject div').html();
-  loadScene(id); 
-});
+// // When you click the node, load the appropriate page
+// $(document).on("click", "g[class='nodes'] g[class='node completed']", function () {
+//   var id = $(this).attr('id');
+//   var text = $(this).find('foreignObject div').html();
+//   loadScene(id); 
+// });
