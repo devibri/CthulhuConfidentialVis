@@ -28,6 +28,7 @@ function loadCharacterGraph() {
 
 // serve up the appropriate scene by either pulling it from local storage or fetching from the appropriate URL
 var loadCharacter = function(character_name) {
+  console.log(character_name);
   currentCharacterName = character_name.toLowerCase();
   // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
   if (localStorage.getItem("characterInfo") === null) {
@@ -166,28 +167,35 @@ function loadGraph() {
   }
 }
 
+
 function parseGraph(graphDefinition) {
-  console.log("Graph definition: " + graphDefinition);
-  $('#graph').empty();
-  var element = document.querySelector("#graph");
+  $('#graphInfo').empty();
+  var element = document.querySelector("#graphInfo");
 
   var insertSvg = function(svgCode, bindFunctions){
     element.innerHTML = svgCode;
   };
-  mermaid.mermaidAPI.render('graph', graphDefinition, insertSvg);
+  mermaid.mermaidAPI.render('graphInfo', graphDefinition, insertSvg);
 }
 
-// // When you click the node, load the appropriate page
-// $(document).on("click", "g[class='nodes'] g[class='node']", function () {
-//   var id = $(this).attr('id');
-//   var text = $(this).find('foreignObject div').html();
-//   loadScene(id); 
-// });
+// When you click the node, load the appropriate page
+$(document).on("click", "g[class='nodes'] g[class='node']", function () {
+  var id = $(this).attr('id');
+  var text = $(this).find('foreignObject div').html();
+  loadCharacter(id); 
+});
 
 
-// // When you click the node, load the appropriate page
-// $(document).on("click", "g[class='nodes'] g[class='node completed']", function () {
-//   var id = $(this).attr('id');
-//   var text = $(this).find('foreignObject div').html();
-//   loadScene(id); 
-// });
+// When you click the node, load the appropriate page
+$(document).on("click", "g[class='nodes'] g[class='node met']", function () {
+  var id = $(this).attr('id');
+  var text = $(this).find('foreignObject div').html();
+  loadCharacter(id); 
+});
+
+// When you click the node, load the appropriate page
+$(document).on("click", "g[class='nodes'] g[class='node known']", function () {
+  var id = $(this).attr('id');
+  var text = $(this).find('foreignObject div').html();
+  loadCharacter(id); 
+});
