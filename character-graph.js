@@ -18,12 +18,12 @@ window.onload = function () {
 }
 
 function loadCharacterGraph() {
-  // if (localStorage.getItem("currentCharacter") === null) {
-  //   loadCharacter("margaret_deaken");
-  // } else {
-  //   loadCharacter(localStorage.getItem("currentCharacter"));
-  // }
-  //loadGraph();
+  if (localStorage.getItem("currentCharacter") === null) {
+    loadCharacter("margaret_deaken");
+  } else {
+    loadCharacter(localStorage.getItem("currentCharacter"));
+  }
+  loadGraph();
 }
 
 // serve up the appropriate scene by either pulling it from local storage or fetching from the appropriate URL
