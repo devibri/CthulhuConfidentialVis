@@ -18,11 +18,11 @@ window.onload = function () {
 }
 
 function loadCharacterGraph() {
-  if (localStorage.getItem("currentCharacter") === null) {
-    loadCharacter("margaret_deaken");
-  } else {
-    loadCharacter(localStorage.getItem("currentCharacter"));
-  }
+  // if (localStorage.getItem("currentCharacter") === null) {
+  //   loadCharacter("margaret_deaken");
+  // } else {
+  //   loadCharacter(localStorage.getItem("currentCharacter"));
+  // }
   loadGraph();
 }
 
@@ -59,8 +59,6 @@ function parseCharacter(result, name) {
   // clear the current thing in the div
   $('#characterInfo').empty();
   // print out the title scene and type
-  console.log(result);
-  console.log(name);
   result.forEach(function(character) {
     if (character.id == name) {
       characterInfo.insertAdjacentHTML( 'beforeend', "<h1>" + character.name + " </h1>");
@@ -139,10 +137,8 @@ function parseCharacter(result, name) {
 
 
 function loadGraph() {
-  console.log("loading graph");
   // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
   if (localStorage.getItem("graphData") === null) {
-    console.log("graphdata is null");
     var url = "https://www.devi-a.com/CthulhuConfidentialVis/data/character-graph.json";
   // use AJAX to fetch the appropriate JSON data
     $.ajax({
@@ -171,7 +167,7 @@ function loadGraph() {
 }
 
 function parseGraph(graphDefinition) {
-  console.log("parsing graph");
+  console.log("Graph definition: " + graphDefinition);
   $('#graphInfo').empty();
   var element = document.querySelector("#graphInfo");
 
