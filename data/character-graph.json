@@ -1,7 +1,7 @@
 {
    "graph": [
       "graph TD",
-      "margaret_deaken[Margaret Deaken - The Client]",
+      "margaret_deaken[Margaret Deaken<br>The Client]",
       "helen_deaken[Helen Deaken<br>Margaret's sister]",
       "whitey_alexander[Whitey Alexander<br>Casino owner]",
       "helen_deaken --> |Mistress|whitey_alexander",
