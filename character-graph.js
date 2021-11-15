@@ -18,11 +18,11 @@ window.onload = function () {
 }
 
 function loadCharacterGraph() {
-  // if (localStorage.getItem("currentCharacter") === null) {
-  //   loadCharacter("margaret_deaken");
-  // } else {
-  //   loadCharacter(localStorage.getItem("currentCharacter"));
-  // }
+  if (localStorage.getItem("currentCharacter") === null) {
+    loadCharacter("margaret_deaken");
+  } else {
+    loadCharacter(localStorage.getItem("currentCharacter"));
+  }
   loadGraph();
 }
 
@@ -168,13 +168,13 @@ function loadGraph() {
 
 function parseGraph(graphDefinition) {
   console.log("Graph definition: " + graphDefinition);
-  $('#graphInfo').empty();
-  var element = document.querySelector("#graphInfo");
+  $('#graph').empty();
+  var element = document.querySelector("#graph");
 
   var insertSvg = function(svgCode, bindFunctions){
     element.innerHTML = svgCode;
   };
-  mermaid.mermaidAPI.render('graphInfo', graphDefinition, insertSvg);
+  mermaid.mermaidAPI.render('graph', graphDefinition, insertSvg);
 }
 
 // // When you click the node, load the appropriate page
