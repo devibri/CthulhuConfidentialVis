@@ -63,15 +63,12 @@ function parseCharacter(result, name) {
     if (character.id == name) {
       characterInfo.insertAdjacentHTML( 'beforeend', "<h1>" + character.name + " </h1>");
       characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + character.title + " </p>");
-      if (character.known) {
-         characterInfo.insertAdjacentHTML( 'beforeend', "<p>Known:  <input type='checkbox' name='known' checked></p>");
-      } else {
-        characterInfo.insertAdjacentHTML( 'beforeend', "<p>Known:  <input type='checkbox' name='known'></p>");
-      }
-      if (character.met) {
-         characterInfo.insertAdjacentHTML( 'beforeend', "<p>Met:  <input type='checkbox' name='met' checked></p>");
-      } else {
-        characterInfo.insertAdjacentHTML( 'beforeend', "<p>Met:  <input type='checkbox' name='met'></p>");
+      if (character.known == "Not known") {
+         characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' id='known-list'><option value='not-known' selected>Not known</option><option value='known'>Known</option><option value='met'>Met</option></select>");
+      } else if (character.known == "Known") {
+        characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' id='known-list'><option value='not-known'>Not known</option><option value='known' selected>Known</option><option value='met'>Met</option></select>");
+      } else { // If character has been met 
+        characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' id='known-list'><option value='not-known'>Not known</option><option value='known'>Known</option><option value='met' selected>Met</option></select>");
       }
       characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + character.description + "</p>");
     }
