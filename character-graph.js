@@ -61,7 +61,6 @@ function parseCharacter(result, name) {
   // print out the title scene and type
   result.forEach(function(character) {
     if (character.id == name) {
-      console.log(character);
       characterInfo.insertAdjacentHTML( 'beforeend', "<h1>" + character.name + " </h1>");
       characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + character.title + " </p>");
       if (character.known) {
@@ -70,10 +69,8 @@ function parseCharacter(result, name) {
         characterInfo.insertAdjacentHTML( 'beforeend', "<p>Known:  <input type='checkbox' name='known'></p>");
       }
       if (character.met) {
-        console.log("met");
          characterInfo.insertAdjacentHTML( 'beforeend', "<p>Met:  <input type='checkbox' name='met' checked></p>");
       } else {
-        console.log("not met");
         characterInfo.insertAdjacentHTML( 'beforeend', "<p>Met:  <input type='checkbox' name='met'></p>");
       }
       characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + character.description + "</p>");
@@ -84,7 +81,6 @@ function parseCharacter(result, name) {
 
 // When you click the checkbox for known, have this update the graph and the JSON
 $(document).on("click", "input[name='known']", function () {
-  console.log("clicked known");
   // update the scene JSON to reflect that location has been visited
   var checked = $(this).prop('checked');
   characterJSON.known = checked; 
