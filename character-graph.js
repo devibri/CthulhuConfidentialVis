@@ -83,61 +83,37 @@ function setKnown(value, name) {
       character.known = value;
     }
   });
+  console.log(value);
   console.log(characterJSON);
-  localStorage.setItem("characterInfo", characterJSON);
+  //localStorage.setItem("characterInfo", characterJSON);
 
 }
 
-// When you click the checkbox for known, have this update the graph and the JSON
-$(document).on("click", "input[name='known']", function () {
-  console.log("clicked");
-  // update the scene JSON to reflect that location has been visited
-  var checked = $(this).prop('checked');
-  characterJSON.known = checked; 
-  // after this is done, should update the JSON file
-  localStorage.setItem("currentCharacter", currentCharacterName);
+// // When you click the checkbox for known, have this update the graph and the JSON
+// $(document).on("click", "input[name='known']", function () {
+//   console.log("clicked");
+//   // update the scene JSON to reflect that location has been visited
+//   var checked = $(this).prop('checked');
+//   characterJSON.known = checked; 
+//   // after this is done, should update the JSON file
+//   localStorage.setItem("currentCharacter", currentCharacterName);
 
-  // update the graph JSON to indicate that the character is now known
-  if (checked) {
-    graphJSON.graph.push("class " + currentCharacterName + " known;");
-    // otherwise go through and remove the indication that the scene has been completed
-  } else {
-    var tag = "class " + currentCharacterName + " known;";
-    graphJSON.graph.forEach(function(element, index) {
-      if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
-        graphJSON.graph.splice(index, 1);
-      } 
-    }); 
-  }
-  //save the current graph data then redisplay graph
-  localStorage.setItem("graphData", JSON.stringify(graphJSON));
-  loadGraph();
-});
-
-// When you click the checkbox for known, have this update the graph and the JSON
-$(document).on("click", "input[name='met']", function () {
-  // update the scene JSON to reflect that location has been visited
-  var checked = $(this).prop('checked');
-  characterJSON.known = checked; 
-  // after this is done, should update the JSON file
-  localStorage.setItem("currentCharacter", currentCharacterName);
-
-  // update the graph JSON to indicate that the character is now known
-  if (checked) {
-    graphJSON.graph.push("class " + currentCharacterName + " met;");
-    // otherwise go through and remove the indication that the scene has been completed
-  } else {
-    var tag = "class " + currentCharacterName + " met;";
-    graphJSON.graph.forEach(function(element, index) {
-      if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
-        graphJSON.graph.splice(index, 1);
-      } 
-    }); 
-  }
-  //save the current graph data then redisplay graph
-  localStorage.setItem("graphData", JSON.stringify(graphJSON));
-  loadGraph();
-});
+//   // update the graph JSON to indicate that the character is now known
+//   if (checked) {
+//     graphJSON.graph.push("class " + currentCharacterName + " known;");
+//     // otherwise go through and remove the indication that the scene has been completed
+//   } else {
+//     var tag = "class " + currentCharacterName + " known;";
+//     graphJSON.graph.forEach(function(element, index) {
+//       if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
+//         graphJSON.graph.splice(index, 1);
+//       } 
+//     }); 
+//   }
+//   //save the current graph data then redisplay graph
+//   localStorage.setItem("graphData", JSON.stringify(graphJSON));
+//   loadGraph();
+// });
 
 
 function loadGraph() {
