@@ -64,20 +64,33 @@ function parseCharacter(result, name) {
       characterInfo.insertAdjacentHTML( 'beforeend', "<h1>" + character.name + " </h1>");
       characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + character.title + " </p>");
       if (character.known == "Not known") {
-         characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' id='known-list'><option value='not-known' selected>Not known</option><option value='known'>Known</option><option value='met'>Met</option></select>");
+         characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' onchange='setKnown(this.value, name)'><option value='Not known' selected>Not known</option><option value='Known'>Known</option><option value='Met'>Met</option></select>");
       } else if (character.known == "Known") {
-        characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' id='known-list'><option value='not-known'>Not known</option><option value='known' selected>Known</option><option value='met'>Met</option></select>");
+        characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' onchange='setKnown(this.value, name)'><option value='Not known'>Not known</option><option value='Known' selected>Known</option><option value='Met'>Met</option></select>");
       } else { // If character has been met 
-        characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' id='known-list'><option value='not-known'>Not known</option><option value='known'>Known</option><option value='met' selected>Met</option></select>");
+        characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' onchange='setKnown(this.value, name)'><option value='Not known'>Not known</option><option value='Known'>Known</option><option value='Met' selected>Met</option></select>");
       }
       characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + character.description + "</p>");
     }
   });
 }
 
+// on changing the dropdown, update the value in the graph and the JSON
+function setKnown(value, name) {
+  console.log(characterJSON);
+  characterJSON.forEach(function(character) {
+    if (character.id == name) {
+      character.known = value;
+    }
+  });
+  console.log(characterJSON);
+  localStorage.setItem("characterInfo", characterJSON);
+
+}
 
 // When you click the checkbox for known, have this update the graph and the JSON
 $(document).on("click", "input[name='known']", function () {
+  console.log("clicked");
   // update the scene JSON to reflect that location has been visited
   var checked = $(this).prop('checked');
   characterJSON.known = checked; 
