@@ -64,11 +64,11 @@ function parseCharacter(result, name) {
       characterInfo.insertAdjacentHTML( 'beforeend', "<h1>" + character.name + " </h1>");
       characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + character.title + " </p>");
       if (character.known == "Not known") {
-         characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' onchange='setKnown(this.value, name)'><option value='Not known' selected>Not known</option><option value='Known'>Known</option><option value='Met'>Met</option></select>");
+         characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' onchange='setKnown(this.value)'><option value='Not known' selected>Not known</option><option value='Known'>Known</option><option value='Met'>Met</option></select>");
       } else if (character.known == "Known") {
-        characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' onchange='setKnown(this.value, name)'><option value='Not known'>Not known</option><option value='Known' selected>Known</option><option value='Met'>Met</option></select>");
+        characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' onchange='setKnown(this.value)'><option value='Not known'>Not known</option><option value='Known' selected>Known</option><option value='Met'>Met</option></select>");
       } else { // If character has been met 
-        characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' onchange='setKnown(this.value, name)'><option value='Not known'>Not known</option><option value='Known'>Known</option><option value='Met' selected>Met</option></select>");
+        characterInfo.insertAdjacentHTML( 'beforeend', "<select name='known' onchange='setKnown(this.value)'><option value='Not known'>Not known</option><option value='Known'>Known</option><option value='Met' selected>Met</option></select>");
       }
       characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + character.description + "</p>");
     }
@@ -76,45 +76,31 @@ function parseCharacter(result, name) {
 }
 
 // on changing the dropdown, update the value in the graph and the JSON
-function setKnown(value, name) {
-  console.log(characterJSON);
+function setKnown(value) {
   characterJSON.forEach(function(character) {
-    if (character.id == name) {
+    console.log(name);
+    if (character.id == currentCharacterName) {
       character.known = value;
+
+      // remove any current instances of the name class as "known" or "met"
+      graphJSON.graph.forEach(function(element, index) {
+        if (element.includes('class') && element.includes(currentCharacterName)) { 
+          graphJSON.graph.splice(index, 1);
+        } 
+      }); 
+
+      // add the appropriate graph class, if known or met (otherwise it just defaults)
+      if (value == "Known" || value == "Met") {
+        graphJSON.graph.push("class " + currentCharacterName + " " + value);
+      }
     }
   });
-  console.log(value);
-  console.log(characterJSON);
-  //localStorage.setItem("characterInfo", characterJSON);
+  localStorage.setItem("characterInfo", JSON.stringify(characterJSON));
 
+  //save the current graph data then redisplay graph
+  localStorage.setItem("graphData", JSON.stringify(graphJSON));
+  loadGraph();
 }
-
-// // When you click the checkbox for known, have this update the graph and the JSON
-// $(document).on("click", "input[name='known']", function () {
-//   console.log("clicked");
-//   // update the scene JSON to reflect that location has been visited
-//   var checked = $(this).prop('checked');
-//   characterJSON.known = checked; 
-//   // after this is done, should update the JSON file
-//   localStorage.setItem("currentCharacter", currentCharacterName);
-
-//   // update the graph JSON to indicate that the character is now known
-//   if (checked) {
-//     graphJSON.graph.push("class " + currentCharacterName + " known;");
-//     // otherwise go through and remove the indication that the scene has been completed
-//   } else {
-//     var tag = "class " + currentCharacterName + " known;";
-//     graphJSON.graph.forEach(function(element, index) {
-//       if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
-//         graphJSON.graph.splice(index, 1);
-//       } 
-//     }); 
-//   }
-//   //save the current graph data then redisplay graph
-//   localStorage.setItem("graphData", JSON.stringify(graphJSON));
-//   loadGraph();
-// });
-
 
 function loadGraph() {
   // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
@@ -146,7 +132,6 @@ function loadGraph() {
   }
 }
 
-
 function parseGraph(graphDefinition) {
   $('#graphInfo').empty();
   var element = document.querySelector("#graphInfo");
@@ -163,7 +148,6 @@ $(document).on("click", "g[class='nodes'] g[class='node']", function () {
   var text = $(this).find('foreignObject div').html();
   loadCharacter(id); 
 });
-
 
 // When you click the node, load the appropriate page
 $(document).on("click", "g[class='nodes'] g[class='node met']", function () {
