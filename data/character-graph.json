@@ -5,7 +5,6 @@
       "helen_deaken[Helen Deaken<br>Margaret's sister]",
       "whitey_alexander[Whitey Alexander<br>Casino owner]",
       "helen_deaken --> |Mistress|whitey_alexander",
-      "class margaret_deaken met;",
       "classDef met fill:#f6f4d2,stroke:#2c2c34,stroke-width:4px;",
       "classDef known fill:#e2dc70,stroke:#2c2c34,stroke-width:4px;",
       "classDef default fill:#d4e09b,stroke:#2c2c34,stroke-width:2px;"

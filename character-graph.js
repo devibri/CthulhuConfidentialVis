@@ -28,7 +28,6 @@ function loadCharacterGraph() {
 
 // serve up the appropriate scene by either pulling it from local storage or fetching from the appropriate URL
 var loadCharacter = function(character_name) {
-  console.log(character_name);
   currentCharacterName = character_name.toLowerCase();
   // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
   if (localStorage.getItem("characterInfo") === null) {
@@ -51,7 +50,7 @@ var loadCharacter = function(character_name) {
 }
 }
 
-// takes the scene you're trying to load and renders it 
+// takes the character you're trying to load and renders it 
 function parseCharacter(result, name) {
   //save the scene name to local storage
   localStorage.setItem("currentCharacter", name);
@@ -62,79 +61,77 @@ function parseCharacter(result, name) {
   // print out the title scene and type
   result.forEach(function(character) {
     if (character.id == name) {
+      console.log(character);
       characterInfo.insertAdjacentHTML( 'beforeend', "<h1>" + character.name + " </h1>");
       characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + character.title + " </p>");
-      if (result.met) {
-         characterInfo.insertAdjacentHTML( 'beforeend', "<p>Met:  <input type='checkbox' name='met' checked></p>");
-      } else {
-        characterInfo.insertAdjacentHTML( 'beforeend', "<p>Met:  <input type='checkbox' name='met'></p>");
-      }
-      if (result.known) {
+      if (character.known) {
          characterInfo.insertAdjacentHTML( 'beforeend', "<p>Known:  <input type='checkbox' name='known' checked></p>");
       } else {
         characterInfo.insertAdjacentHTML( 'beforeend', "<p>Known:  <input type='checkbox' name='known'></p>");
+      }
+      if (character.met) {
+        console.log("met");
+         characterInfo.insertAdjacentHTML( 'beforeend', "<p>Met:  <input type='checkbox' name='met' checked></p>");
+      } else {
+        console.log("not met");
+        characterInfo.insertAdjacentHTML( 'beforeend', "<p>Met:  <input type='checkbox' name='met'></p>");
       }
       characterInfo.insertAdjacentHTML( 'beforeend', "<p>" + character.description + "</p>");
     }
   });
 }
 
-// // When you click the checkbox for a clue, have this update the result in the JSON
-// $(document).on("click", "input[name='clue']", function () {
-//   var checked = $(this).prop('checked');
-//   var clueText = this.nextSibling.data.trim();
-//   // Go through each clue and find the one that matches the checkbox, then change the data for that clue to be known/unknown
-//   sceneJSON.text.forEach(function(element) {
-//     if (element.clue !== undefined && clueText == element.clue[0]) {
-//       element.clue[1].known = checked;
-//     } 
-//     // if you click on a lead to another area, update the flowchart to indicate this
-//     if (element.clue !== undefined && clueText == element.clue[0] && element.clue[2] !== undefined) {
-//       if (checked) {
-//         var tag = currentSceneName + " --> " + element.clue[2].goes_to;
-//         graphJSON.graph.forEach(function(element, index) {
-//           if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
-//             graphJSON.graph.splice(index, 1);
-//           } 
-//         }); 
-//         var newTag = currentSceneName + " ==> " + element.clue[2].goes_to;
-//         graphJSON.graph.push(newTag);
-//         // otherwise go through and remove the indication that the scene has been completed
-//       } 
-//       //save the current graph data then redisplay graph
-//       localStorage.setItem("graphData", JSON.stringify(graphJSON));
-//       loadGraph();
-//     }
-//   }); 
-//   // after this is done, should update the JSON file
-//   localStorage.setItem(currentSceneName, JSON.stringify(sceneJSON));
-// });
 
-// // When you click the checkbox for visited, have this update the graph and the JSON
-// $(document).on("click", "input[name='visited']", function () {
-//   // update the scene JSON to reflect that location has been visited
-//   var checked = $(this).prop('checked');
-//   sceneJSON.visited = checked; 
-//   // after this is done, should update the JSON file
-//   localStorage.setItem(currentSceneName, JSON.stringify(sceneJSON));
+// When you click the checkbox for known, have this update the graph and the JSON
+$(document).on("click", "input[name='known']", function () {
+  console.log("clicked known");
+  // update the scene JSON to reflect that location has been visited
+  var checked = $(this).prop('checked');
+  characterJSON.known = checked; 
+  // after this is done, should update the JSON file
+  localStorage.setItem("currentCharacter", currentCharacterName);
 
-//   // update the graph JSON to indicate that the location has been visited 
-//   if (checked) {
-//     graphJSON.graph.push("class " + currentSceneName + " completed;");
-//     // otherwise go through and remove the indication that the scene has been completed
-//   } else {
-//     var tag = "class " + currentSceneName + " completed;";
-//     graphJSON.graph.forEach(function(element, index) {
-//       if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
-//         graphJSON.graph.splice(index, 1);
-//       } 
-//     }); 
-//   }
-//   //save the current graph data then redisplay graph
-//   localStorage.setItem("graphData", JSON.stringify(graphJSON));
-//   loadGraph();
-// });
+  // update the graph JSON to indicate that the character is now known
+  if (checked) {
+    graphJSON.graph.push("class " + currentCharacterName + " known;");
+    // otherwise go through and remove the indication that the scene has been completed
+  } else {
+    var tag = "class " + currentCharacterName + " known;";
+    graphJSON.graph.forEach(function(element, index) {
+      if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
+        graphJSON.graph.splice(index, 1);
+      } 
+    }); 
+  }
+  //save the current graph data then redisplay graph
+  localStorage.setItem("graphData", JSON.stringify(graphJSON));
+  loadGraph();
+});
 
+// When you click the checkbox for known, have this update the graph and the JSON
+$(document).on("click", "input[name='met']", function () {
+  // update the scene JSON to reflect that location has been visited
+  var checked = $(this).prop('checked');
+  characterJSON.known = checked; 
+  // after this is done, should update the JSON file
+  localStorage.setItem("currentCharacter", currentCharacterName);
+
+  // update the graph JSON to indicate that the character is now known
+  if (checked) {
+    graphJSON.graph.push("class " + currentCharacterName + " met;");
+    // otherwise go through and remove the indication that the scene has been completed
+  } else {
+    var tag = "class " + currentCharacterName + " met;";
+    graphJSON.graph.forEach(function(element, index) {
+      if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
+        graphJSON.graph.splice(index, 1);
+      } 
+    }); 
+  }
+  //save the current graph data then redisplay graph
+  localStorage.setItem("graphData", JSON.stringify(graphJSON));
+  loadGraph();
+});
 
 
 function loadGraph() {
