@@ -1,6 +1,6 @@
 ---
 title: A Dame Comes Into Your Office
-visited: true
+visited: false
 scene_type: Opener
 lead_outs: 
   - "<input id='scene_girl' type='button' value='The Girl with Death in her Eyes' onclick='loadScene(id);' />"
