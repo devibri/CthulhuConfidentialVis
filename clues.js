@@ -1,14 +1,3 @@
-var cluesJSON; 
-var currentSceneName;
-var graphJSON;
-
-// // on start / refresh, clear local vars and load the starting scene
-// document.addEventListener("DOMContentLoaded", function() {
-
-//localStorage.clear();
-//   // loadScene("scene_dame");
-//   loadGraph();
-// });
 function reset() {
   localStorage.clear();
   loadSceneGraph();
@@ -61,60 +50,38 @@ function parseClues(result) {
   }
 });
 }
-  // //save the scene name to local storage
-  // localStorage.setItem("scene", currentSceneName);
-  // /* now go through the JSON and serve up the appropriate webpage based on that */
-  // var sceneInfo = document.getElementById("sceneInfo");
-  // // clear the current thing in the div
-  // $('#sceneInfo').empty();
-  // // print out the title scene and type
-  // sceneInfo.insertAdjacentHTML( 'beforeend', "<h1>" + result.title + " </h1>");
-  // if (result.visited) {
-  //    sceneInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='visited' checked>");
-  // } else {
-  //   sceneInfo.insertAdjacentHTML( 'beforeend', "Completed:  <input type='checkbox' name='visited'>");
-  // }
-  // sceneInfo.insertAdjacentHTML( 'beforeend', "<p><em>Scene Type: " + result.scene_type + " </em></p>");
-  // if (result.lead_ins != null) {
-  //   sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Ins: ");
-  //   result.lead_ins.forEach(function(element) {
-  //     sceneInfo.insertAdjacentHTML( 'beforeend', element + "    ");
-  //   });
-  // }
-  // sceneInfo.insertAdjacentHTML( 'beforeend',"<br>");
-  // // print out and format a list of the lead outs
-  // if (result.lead_outs != null) {
-  //   sceneInfo.insertAdjacentHTML( 'beforeend', "Lead-Outs: ");
-  //   result.lead_outs.forEach(function(element) {
-  //     sceneInfo.insertAdjacentHTML( 'beforeend', element + "    ");
-  //   });
-  // }
- 
-  // sceneInfo.insertAdjacentHTML( 'beforeend',"<hr>");
-  // // print out list of text in the scene
-  // result.text.forEach(function(element) {
-  // if (element.clue !== undefined) {
-  //   // print out each individual clue and format with checkbox
-  //   // check if checkbox should be checked or not 
-  //   if (element.clue[1].known == true) {
-  //     sceneInfo.insertAdjacentHTML( 'beforeend', "<p class='hangingindent'><input type='checkbox' name='clue' checked>  " + element.clue[0] + "</p>");
-  //   } else {
-  //     sceneInfo.insertAdjacentHTML( 'beforeend', "<p class='hangingindent'><input type='checkbox' name='clue'> " + element.clue[0] + "</p>");
+
+
+// When you click the checkbox for a clue, have this update the result in the JSON
+$(document).on("click", "input[name='clue']", function () {
+  var clue = this;
+  //gets the title of the scene the clue is from
+  console.log(clue.parentNode.parentNode.querySelector('h1').textContent);
+  // var checked = $(this).prop('checked');
+  // var clueText = this.nextSibling.data.trim();
+  // // Go through each clue and find the one that matches the checkbox, then change the data for that clue to be known/unknown
+  // sceneJSON.text.forEach(function(element) {
+  //   if (element.clue !== undefined && clueText == element.clue[0]) {
+  //     element.clue[1].known = checked;
+  //   } 
+  //   // if you click on a lead to another area, update the flowchart to indicate this
+  //   if (element.clue !== undefined && clueText == element.clue[0] && element.clue[2] !== undefined) {
+  //     if (checked) {
+  //       var tag = currentSceneName + " --> " + element.clue[2].goes_to;
+  //       graphJSON.graph.forEach(function(element, index) {
+  //         if (element == tag) { // if checked, do a check to add that element, otherwise do a check to remove that element
+  //           graphJSON.graph.splice(index, 1);
+  //         } 
+  //       }); 
+  //       var newTag = currentSceneName + " ==> " + element.clue[2].goes_to;
+  //       graphJSON.graph.push(newTag);
+  //       // otherwise go through and remove the indication that the scene has been completed
+  //     } 
+  //     //save the current graph data then redisplay graph
+  //     localStorage.setItem("graphData", JSON.stringify(graphJSON));
+  //     loadGraph();
   //   }
-  // } else if (element.challenge !== undefined) {
-  //   var challengeHTML = "<div class='challenge'>";
-  //   challengeHTML = challengeHTML + "<p><strong> " + element.challenge[0] + "</strong> " + "(<em>" + element.challenge[1].type + "</em>)</p>";
-  //   // challengeHTML = challengeHTML + "<p><em>" + element.challenge[1].type + "</em></p>";
-  //   challengeHTML = challengeHTML + "<p class='hangingindent'>" + element.challenge[2].advance + "</p>";
-  //   challengeHTML = challengeHTML + "<p class='hangingindent'>" + element.challenge[3].hold + "</p>";
-  //   challengeHTML = challengeHTML + "<p class='hangingindent'>" + element.challenge[4].setback + "</p>";
-  //   if (element.challenge[5] !== undefined) {
-  //     challengeHTML = challengeHTML + "<p>" + element.challenge[5].extra_problem + "</p>";
-  //   }
-  //   challengeHTML = challengeHTML + "</div>";
-  //   sceneInfo.insertAdjacentHTML( 'beforeend', challengeHTML);
-  
-  // } else {
-  //   sceneInfo.insertAdjacentHTML( 'beforeend', "<p>" + element + " </p>");
-  // }
   // }); 
+  // // after this is done, should update the JSON file
+  // localStorage.setItem(currentSceneName, JSON.stringify(sceneJSON));
+});
