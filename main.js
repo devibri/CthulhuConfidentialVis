@@ -179,7 +179,7 @@ $(document).on("click", "input[name='visited']", function () {
 function loadGraph() {
   // When pulling scene, first check to see if it is local storage. If not, pull from the .json file
   if (localStorage.getItem("graphData") === null) {
-    var url = "https://www.devi-a.com/CthulhuConfidentialVis/scenes/graph.json";
+    var url = "https://www.devi-a.com/CthulhuConfidentialVis/data/graph.json";
   // use AJAX to fetch the appropriate JSON data
     $.ajax({
       url: url,
